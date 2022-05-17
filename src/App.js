@@ -1,24 +1,75 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ResponsiveAppBar from './components/Navbar/Navbar.js'
+import Categories from './components/Categories/Categories';
+
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
+import Login from './components/Login/Login';
+import Home from './components/Home/Home';
+import Books from './components/Books/Books';
+import Authors from './components/Authors/Authors';
+import PrivateRoute from './components/PrivateRoutes/PrivateRoute';
+import Trial from './components/trial';
+// import { Login } from '@mui/icons-material';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'light',
+  },
+});
+
 
 function App() {
+  const [token, setToken] = useState(localStorage.getItem("token") ? localStorage.getItem("token") : undefined);
+
+  const updateTokenHandler = (val, keep) => {
+    console.log(keep);
+    setToken(val.token)
+    if (keep === true) {
+      localStorage.setItem('token', val.token);
+    }
+    console.log(token);
+    sessionStorage.setItem("token", val.token);
+
+  }
+  useEffect(() => {
+
+    sessionStorage.setItem("token", token);
+  }, [token])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <BrowserRouter>
+        <ResponsiveAppBar token={token} />
+        <div className='container'>
+          <Routes>
+            <Route path='/' element={
+              <Home token={token}/> 
+              // <Trial />
+            } />
+            <Route path='/categories' element={
+              <PrivateRoute>
+                <Categories />
+              </PrivateRoute>
+            } />
+            {/* <Route path='/categories' element={<Categories />} /> */}
+            <Route path='/books' element={
+              <PrivateRoute>
+                <Books />
+              </PrivateRoute>
+            } />
+            <Route path='/authors' element={
+              <PrivateRoute>
+                <Authors />
+              </PrivateRoute>
+            } />
+            <Route path='/login' element={<Login updateTokenHandler={updateTokenHandler} />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
