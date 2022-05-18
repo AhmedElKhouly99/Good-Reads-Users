@@ -16,28 +16,82 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Rating from '@mui/material/Rating';
-
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
 
 
 function SubheaderDividers({ book }) {
     const [value, setValue] = React.useState(0);
+    let userRate = {};
+    const [status, setStatus] = React.useState(0);
+    const [open, setOpen] = React.useState(false);
 
-    React.useEffect(()=>({
-
-    }), [value]);
-
-    React.useEffect(()=>{
-        axios.get("https://good-reads-server.herokuapp.com/user/rate/", {
+    const editRating = () => {
+        const newRate = {
+            isRated: userRate.isRated,
+            Bid: book._id,
+            status: status,
+            review: userRate.review,
+            rating: value
+        }
+        console.log(userRate.status);
+        console.log(newRate);
+        axios.patch(`https://good-reads-server.herokuapp.com/user/books/`, newRate, {
             headers: {
-                Uid:  sessionStorage.getItem("token"),
+                token: sessionStorage.getItem("token"),
             },
-            Bid:book._id
-        })
+            params: {
+                oldStatus: userRate.status ? userRate.status : 0,
+                oldRating: userRate.rating ? userRate.rating : 0
+            },
+        },
+        )
             .then(function (response) {
                 console.log(response.data);
-                
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    };
+
+
+    const handleChange = (event) => {
+        console.log(event.target.value);
+
+        setStatus(event.target.value);
+        editRating();
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+
+
+    React.useEffect(() => {
+        axios.get(`https://good-reads-server.herokuapp.com/user/rate/${book._id}`, {
+            headers: {
+                token: sessionStorage.getItem("token"),
+            }
+        },
+        )
+            .then(function (response) {
+                console.log(response.data);
+                userRate = response.data;
+                if (userRate.status)
+                    setStatus(userRate.status);
+
+                if (userRate.rating)
+                    setValue(userRate.rating);
             })
             .catch(function (error) {
                 console.log(error);
@@ -57,7 +111,7 @@ function SubheaderDividers({ book }) {
         >
             <ListItem className='row justify-content-around'>
                 <ListItemText primary="Photo" />
-                <img src={book.image} style={{ width: '20%' }} />
+                <img src={book.image} style={{ width: '15%' }} />
             </ListItem>
             <Divider component="li" />
             <li>
@@ -88,7 +142,7 @@ function SubheaderDividers({ book }) {
             <ListItem>
                 <Rating name="read-only" value={rate} readOnly />
             </ListItem>
-            
+
             <Divider component="li" />
             <li>
                 <Typography
@@ -101,23 +155,62 @@ function SubheaderDividers({ book }) {
                 </Typography>
             </li>
             <ListItem>
-                
+
                 <Rating
                     name="simple-controlled"
                     value={value}
                     onChange={(event, newValue) => {
                         setValue(newValue);
+                        editRating();
                     }}
                 />
             </ListItem>
+
+
+            <Divider component="li" />
+            <li>
+                <Typography
+                    sx={{ mt: 0.5, ml: 2 }}
+                    color="text.secondary"
+                    display="block"
+                    variant="caption"
+                // secondary="Authors"
+                >
+                    Add Book :
+                </Typography>
+            </li>
             <ListItem>
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                    <InputLabel id="demo-controlled-open-select-label">Status</InputLabel>
+                    <Select
+                        labelId="demo-controlled-open-select-label"
+                        id="demo-controlled-open-select"
+                        open={open}
+                        onClose={handleClose}
+                        onOpen={handleOpen}
+                        value={status}
+                        label="Status"
+                        onChange={handleChange}
+                    >
+                        <MenuItem value={0}>
+                            <em>Add Book Status</em>
+                        </MenuItem>
+                        <MenuItem value={1}>Read</MenuItem>
+                        <MenuItem value={2}>Currently Reading</MenuItem>
+                        <MenuItem value={3}>Want To Read</MenuItem>
+                    </Select>
+                </FormControl>
+            </ListItem>
+
+
+            {/* <ListItem>
                 <ListItemAvatar>
                     <Avatar>
                         <BeachAccessIcon />
                     </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary="Vacation" secondary="July 20, 2014" />
-            </ListItem>
+            </ListItem> */}
         </List>
     );
 }
