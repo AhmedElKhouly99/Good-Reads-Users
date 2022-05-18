@@ -1,6 +1,8 @@
 import { React, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import '../Signup/SignUp.css';
+import TextField from '@mui/material/TextField';
 
 const radios = document.getElementsByName('gender');
 const pass = document.getElementsByName('password');
@@ -49,37 +51,39 @@ export default function SignUp() {
     };
     return (
         <div className='row justify-content-center signup-temp'>
-            <img className='logo' src={'https://images-na.ssl-images-amazon.com/images/G/01/goodreads/Goodreads-Logo-AuthPortal._CB646706455_.png'} />
-            <h2 className='my-3'>Sign Up</h2>
+            {/* <img className='logo' src={'https://images-na.ssl-images-amazon.com/images/G/01/goodreads/Goodreads-Logo-AuthPortal._CB646706455_.png'} /> */}
+            <h2 className='my-3 registerTxt'>Sign Up</h2>
             <form className='col-8' onSubmit={e => handleLogin(e)}>
                 <div className='form-group my-3'>
-                    <label className=''>First Name</label>
-                    <input className='form-control'
+                    {/* <label className=''>First Name</label> */}
+                    <TextField id="filled-size-small" variant="filled" size="small" label="First Name" className='form-control'
                         onChange={e => setUser({ ...user, firstName: e.target.value })}
                         name='fname' type={'text'} required placeholder='Enter your first name...' />
                 </div>
                 <div className='form-group my-3'>
-                    <label className=''>Last Name</label>
-                    <input className='form-control'
+                    {/* <label className=''>Last Name</label> */}
+                    <TextField id="filled-size-small" variant="filled" size="small" label="Last Name"ut className='form-control'
                         onChange={e => setUser({ ...user, lastName: e.target.value })}
                         name='lname' type={'text'} required placeholder='Enter your last name...' />
                 </div>
                 <div className='form-group my-3'>
-                    <label className=''>Email</label>
-                    <input className='form-control'
+                    {/* <label className=''>Email</label> */}
+                    <TextField id="filled-size-small" variant="filled" size="small" label="Email" className='form-control'
                         onChange={e => setUser({ ...user, email: e.target.value })}
-                        name='email' type={'email'} required placeholder='Enter your email...' />
+                        name='email' type={'email'} required placeholder='name@gmail.com' />
                 </div>
 
                 <div className='form-group my-3'>
-                    <label>Password</label>
-                    <input className='form-control'
+                    {/* <label>Password</label> */}
+                    <TextField id="filled-size-small" variant="filled" size="small" label="Password" className='form-control'
                         onChange={e => setUser({ ...user, password: e.target.value })}
                         name='password' type={'password'} required placeholder='Enter your password...' />
                 </div>
                 <div className='form-group my-3'>
-                    <label>Confirm Password</label>
-                    <input id='passConfirm'
+                    {/* <label>Confirm Password</label> */}
+                    {/* id='passConfirm' */}
+                    {/* input id='passConfirm' */}
+                    <TextField id="passConfirm filled-size-small" variant="filled" size="small" label="Confirm Password" 
                         onChange={e => {
                             if (pass[0].value !== e.target.value) {
                                 pass[1].setAttribute('class', 'form-control is-invalid');
@@ -105,12 +109,14 @@ export default function SignUp() {
                         name='dbt' type={'date'} required />
                 </div>
                 <div className='form-group my-3'>
-                    <label>Country</label>
-                    <input className='form-control'
+                    {/* <label>Country</label> */}
+                    <TextField id="filled-size-small" variant="filled" size="small" label="Country" className='form-control'
                         onChange={e => setUser({ ...user, country: e.target.value })}
                         name='country' type={'text'} required placeholder='Enter your country...' />
                 </div>
+                <p>Choose your gender:</p>
                 <div class="form-check">
+                    
                     <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1" value={'male'} />
                     <label class="form-check-label alignLable" for="flexRadioDefault1">
                         male
@@ -122,14 +128,15 @@ export default function SignUp() {
                         female
                     </label>
                 </div>
-                <ul typeof='disc' id='validate'>
+                <div class="errorDiv">
+                <ul typeof='disc' id='validate' class='text-danger'>
 
                 </ul>
-
-                <input type="submit" class="btn btn-primary button-28 my-3" value="REGISTER"></input>
+                </div>
+                <input type="submit" class="btn btn-outline-primary button-28 my-3 registerBtn"  value="REGISTER"></input>
             </form>
 
-            <p>Already have an account? <Link to={'/'}><a className='link'>Sign in</a></Link></p>
+            <p className='loginLink'>Already have an account? <Link to={'/'}><a className='link'>Sign in</a></Link></p>
         </div>
     )
 }

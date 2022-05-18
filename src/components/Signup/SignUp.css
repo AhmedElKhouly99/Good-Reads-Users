@@ -1,0 +1,22 @@
+@import url('https://fonts.google.com/specimen/Lobster?query=lobster');
+.registerTxt{
+    margin-left: 90%;
+    font-family: 'Lobster', cursive;
+    font-weight: bold;
+    color: darkslateblue;
+}
+.registerBtn{
+    margin-left: 42%;
+    width: 100px;
+}
+.loginLink{
+    margin-left: 80%;
+}
+.errorDiv{
+    background-color: rgb(224, 221, 221);
+    border-width: 5px;
+    border-style: none none none solid;
+    border-color: red;
+    font-weight: bold;
+    font-size: 16px;
+}

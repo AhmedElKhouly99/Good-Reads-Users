@@ -17,6 +17,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchTabs from './Search';
+import "../Navbar/Navbar.css";
+import Grid from '@mui/material/Grid';
+import CategoryIcon from '@mui/icons-material/Category';
 
 
 // import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
@@ -118,7 +121,7 @@ const ResponsiveAppBar = ({ token, children }) => {
     if (tok) {
 
         return (<>
-            <AppBar position="static" style={{ padding: '0.5%' }}>
+            <AppBar position="static" style={{ padding: '0.5%' }} class="myNav">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <img onClick={() => {
@@ -154,6 +157,7 @@ const ResponsiveAppBar = ({ token, children }) => {
                             >
                                 <MenuIcon />
                             </IconButton>
+                            {/* <img src='https://cdn-icons-png.flaticon.com/512/6423/6423887.png' class="iconImg"/> */}
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorElNav}
@@ -269,7 +273,8 @@ const ResponsiveAppBar = ({ token, children }) => {
 
     return (
         <>
-            <AppBar position="static">
+        {/* class="myNav" */}
+            <AppBar position="static" class="myNav">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <img onClick={() => route(`/`)} style={{ width: "6%", cursor: 'pointer', borderRadius: '20%' }} src='https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif' alt='' />
