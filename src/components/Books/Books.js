@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Book from './book'
+import FullScreenBook from './BookView';
 
 
 const data = [
@@ -73,6 +74,8 @@ export default function Books() {
     const [numPages, setNumPages] = useState(1);
     const [books, setBooks] = useState(undefined);
     const [page, setPage] = React.useState(1);
+    const [openBook, setOpenBook] = useState({open:false, book:undefined});
+
     const handleChange = (event, value) => {
         setPage(value);
         // setBooks here
@@ -93,12 +96,16 @@ export default function Books() {
             })
     }, [page])
 
+    // const handleOpenBook = (book, openFlag)=> {
+
+    // }
+
     if (books)
         return (
             <>
                 <div className='row justify-content-around' style={{ marginTop: "5%" }}>
                     {
-                        books.map((book) => { return (<Book book={book} />) })
+                        books.map((book) => { return (<Book book={book} setOpenBook={setOpenBook} />) })
                     }
 
                 </div>
@@ -107,6 +114,7 @@ export default function Books() {
                         <Pagination count={numPages} color="primary" page={page} onChange={handleChange} />
                     </Stack>
                 </div>
+                <FullScreenBook  openBook={openBook}/>
             </>
         )
 

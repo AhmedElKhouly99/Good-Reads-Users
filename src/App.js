@@ -12,6 +12,7 @@ import Books from './components/Books/Books';
 import Authors from './components/Authors/Authors';
 import PrivateRoute from './components/PrivateRoutes/PrivateRoute';
 import SignUp from './components/Signup/SignUp';
+import FullScreenDialog from './components/Books/BookView';
 
 
 const darkTheme = createTheme({
@@ -67,7 +68,10 @@ function App() {
           </div>
         </ResponsiveAppBar>
         <Routes>
-          <Route path='/login' element={<Login updateTokenHandler={updateTokenHandler} />} />
+          <Route path='/login' element={
+          <Login updateTokenHandler={updateTokenHandler} />
+          // <FullScreenDialog />
+          } />
           <Route path='/signup' element={<SignUp />} />
         </Routes>
       </BrowserRouter>
