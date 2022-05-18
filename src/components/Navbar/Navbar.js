@@ -16,7 +16,8 @@ import AdbIcon from '@mui/icons-material/Adb';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import { logDOM } from '@testing-library/react';
+import SearchTabs from './Search';
+
 
 // import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 // import Brightness4Icon from '@mui/icons-material/Brightness4';
@@ -76,8 +77,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const pages = ['categories', 'books', 'authors'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 // const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
-const ResponsiveAppBar = ({ token }) => {
+const ResponsiveAppBar = ({ token, children }) => {
     const tok = token;
+    const [searchStatus, setSearchStatus] = React.useState(false)
     // const theme = useTheme();
     // const colorMode = React.useContext(ColorModeContext);
 
@@ -105,16 +107,24 @@ const ResponsiveAppBar = ({ token }) => {
     const searchHandler = (event) => {
         // handle search here
         console.log(event.target.value)
+        setSearchStatus(true)
         alert(search);
+
     }
 
+    // if(searchStatus){
+    //     return (<SearchTabs></SearchTabs>);
+    // }
     if (tok) {
 
         return (<>
             <AppBar position="static" style={{ padding: '0.5%' }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
-                        <img onClick={() => route(`/`)} style={{ width: "6%", cursor: 'pointer', borderRadius: '20%' }} src='https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif' />
+                        <img onClick={() => {
+                            route(`/`);
+                            setSearchStatus(false)
+                        }} style={{ width: "6%", cursor: 'pointer', borderRadius: '20%' }} src='https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif' />
                         <Typography
                             variant="h6"
                             noWrap
@@ -163,7 +173,11 @@ const ResponsiveAppBar = ({ token }) => {
                                 }}
                             >
                                 {pages.map((page) => (
-                                    <MenuItem key={page} onClick={() => route(`/${page}`)}>
+                                    <MenuItem key={page} onClick={() => {
+                                        route(`/${page}`);
+                                        setSearchStatus(false)
+                                    }
+                                    }>
                                         <Typography textAlign="center">{page}</Typography>
                                     </MenuItem>
                                 ))}
@@ -192,13 +206,17 @@ const ResponsiveAppBar = ({ token }) => {
                             {pages.map((page) => (
                                 <Button
                                     key={page}
-                                    onClick={() => route(`/${page}`)}
+                                    onClick={() => {
+                                        route(`/${page}`);
+                                        setSearchStatus(false)
+                                    }
+                                    }
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >
                                     {page}
                                 </Button>
                             ))}
-                            <Search sx={{ maxHeight: 50, marginTop: "1%"}}>
+                            <Search sx={{ maxHeight: 50, marginTop: "1%" }}>
                                 <IconButton onClick={searchHandler} size="large" aria-label="search" color="inherit">
                                     <SearchIcon />
                                 </IconButton>
@@ -241,7 +259,9 @@ const ResponsiveAppBar = ({ token }) => {
                         </Box>
                     </Toolbar>
                 </Container>
-            </AppBar></>
+            </AppBar>
+            {searchStatus ? <SearchTabs search={search} /> : children}
+        </>
         )
 
     }
@@ -339,7 +359,7 @@ const ResponsiveAppBar = ({ token }) => {
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Button onClick={() => route(`/login`)} color="inherit">Login</Button>
-                        <Button color="inherit">Sign Up</Button>
+                        <Button onClick={() => route(`/signup`)} color="inherit">Sign Up</Button>
                     </Box>
                 </Toolbar>
             </Container>

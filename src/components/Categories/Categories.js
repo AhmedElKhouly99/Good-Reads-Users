@@ -1,8 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
 import Category from './Category'
 
 export default function Categories() {
-  const [categories, setCategories] = useState([{name :"ghfvh"},{name:"vfesd"},{name:'fgdsvgd'},{name:'gbfgfb'},{name:'gtrfvgfv'},{name:'fvdsbgtf'}]);
+  const [categories, setCategories] = useState(undefined);
+
+    useEffect(() => {
+        axios.get("https://good-reads-server.herokuapp.com/user/categories")
+            .then(function (response) {
+                console.log(response.data);
+                setCategories(response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }, [])
+    if (categories)
   return (
     <div className='row justify-content-around'>
       {

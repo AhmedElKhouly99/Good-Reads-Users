@@ -1,51 +1,50 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import AuthorCard from './AuthorCard';
 
 
 export default function PopularAuthors() {
+    const [popAuthors, setPopAuthors] = useState(undefined);
+    useEffect(() => {
+        axios.get("https://good-reads-server.herokuapp.com/user/categories/popular")
+            .then(function (response) {
+                console.log(response.data);
+                setPopAuthors(response.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }, [])
+    if (popAuthors)
     return (
-        <div id="carouselExampleFade" className="carousel slide carousel-fade col-3" data-bs-ride="carousel" style={{ width: "30%" }}>
+        <div id="carouselExampleFade3" className="carousel slide carousel-fade col-3" data-bs-ride="carousel" style={{ width: "30%" }}>
 
             <div class="carousel-indicators">
-                <button style={{ backgroundColor: "black" }} type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button style={{ backgroundColor: "black" }} type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button style={{ backgroundColor: "black" }} type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button style={{ backgroundColor: "black" }} type="button" data-bs-target="#carouselExampleFade3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button style={{ backgroundColor: "black" }} type="button" data-bs-target="#carouselExampleFade3" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button style={{ backgroundColor: "black" }} type="button" data-bs-target="#carouselExampleFade3" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
 
 
             <div className="carousel-inner">
-                <div className="carousel-item active">
-                    <Card sx={{ maxWidth: 345 }}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                height="140"
-                                image="https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"
-                                alt="green iguana"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
-                                    Lizard
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                                    species, ranging across all continents except Antarctica
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </div>
-
+                {
+                    popAuthors.map((author) => {
+                        return (
+                            <AuthorCard author={author} isFirst={popAuthors[0] === author ? true : false} />
+                        )
+                    })
+                }
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade3" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>
             </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade3" data-bs-slide="next">
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
             </button>

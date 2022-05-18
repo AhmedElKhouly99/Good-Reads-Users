@@ -57,7 +57,7 @@ const rows = [
   createData('Brazil', 'BR', 210147125, 8515767),
 ];
 
-export default function Table() {
+export default function Tablee() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -82,8 +82,14 @@ export default function Table() {
               <TableCell align="center" colSpan={3}>
                 Details
               </TableCell>
+              <TableCell align="center" colSpan={3}>
+                Details
+              </TableCell>
+              <TableCell align="center" colSpan={3}>
+                Details
+              </TableCell>
             </TableRow>
-            <TableRow>
+            {/* <TableRow>
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
@@ -93,7 +99,7 @@ export default function Table() {
                   {column.label}
                 </TableCell>
               ))}
-            </TableRow>
+            </TableRow> */}
           </TableHead>
           <TableBody>
             {rows

@@ -11,8 +11,8 @@ import Home from './components/Home/Home';
 import Books from './components/Books/Books';
 import Authors from './components/Authors/Authors';
 import PrivateRoute from './components/PrivateRoutes/PrivateRoute';
-import Trial from './components/trial';
-// import { Login } from '@mui/icons-material';
+import SignUp from './components/Signup/SignUp';
+
 
 const darkTheme = createTheme({
   palette: {
@@ -42,10 +42,11 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <BrowserRouter>
-        <ResponsiveAppBar token={token} />
+        <ResponsiveAppBar token={token} >
         <div className='container'>
           <Routes>
             <Route path='/' element={
+              // <PopularCategories/>
               <Home token={token}/> 
               // <Trial />
             } />
@@ -66,8 +67,10 @@ function App() {
               </PrivateRoute>
             } />
             <Route path='/login' element={<Login updateTokenHandler={updateTokenHandler} />} />
+            <Route path='/signup' element={<SignUp />} />
           </Routes>
         </div>
+        </ResponsiveAppBar>
       </BrowserRouter>
     </ThemeProvider>
   );

@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
+
 export default function Author( { author } ) {
 
   return (
@@ -13,12 +14,12 @@ export default function Author( { author } ) {
         <CardMedia
           component="img"
           height="140"
-          image="https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"
+          image={author.image?author.image: "https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"}
           alt="green iguana"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Author name
+            {author.fullname?author.fullname:author.firstName + " " + author.lastName}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Date of Birth : 20/2/1979
