@@ -43,34 +43,33 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <BrowserRouter>
         <ResponsiveAppBar token={token} >
-        <div className='container'>
-          <Routes>
-            <Route path='/' element={
-              // <PopularCategories/>
-              <Home token={token}/> 
-              // <Trial />
-            } />
-            <Route path='/categories' element={
-              <PrivateRoute>
-                <Categories />
-              </PrivateRoute>
-            } />
-            {/* <Route path='/categories' element={<Categories />} /> */}
-            <Route path='/books' element={
-              <PrivateRoute>
-                <Books />
-              </PrivateRoute>
-            } />
-            <Route path='/authors' element={
-              <PrivateRoute>
-                <Authors />
-              </PrivateRoute>
-            } />
-            <Route path='/login' element={<Login updateTokenHandler={updateTokenHandler} />} />
-            <Route path='/signup' element={<SignUp />} />
-          </Routes>
-        </div>
+          <div className='container'>
+            <Routes>
+              <Route path='/' element={
+                <Home token={token} />
+              } />
+              <Route path='/categories' element={
+                <PrivateRoute>
+                  <Categories />
+                </PrivateRoute>
+              } />
+              <Route path='/books' element={
+                <PrivateRoute>
+                  <Books />
+                </PrivateRoute>
+              } />
+              <Route path='/authors' element={
+                <PrivateRoute>
+                  <Authors />
+                </PrivateRoute>
+              } />
+            </Routes>
+          </div>
         </ResponsiveAppBar>
+        <Routes>
+          <Route path='/login' element={<Login updateTokenHandler={updateTokenHandler} />} />
+          <Route path='/signup' element={<SignUp />} />
+        </Routes>
       </BrowserRouter>
     </ThemeProvider>
   );
