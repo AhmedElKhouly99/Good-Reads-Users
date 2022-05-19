@@ -84,6 +84,7 @@ function App() {
                   <PrivateRoute>
                     <Login />
                   </PrivateRoute>
+                  // <Home token={token} />
                 }
               />
             </Routes>

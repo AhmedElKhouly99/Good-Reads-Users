@@ -262,10 +262,15 @@ const ResponsiveAppBar = ({ token, children }) => {
                     <MenuItem
                       key={setting}
                       onClick={() => {
-                        if (setting=="Home"){
+                        if (setting === "Home") {
                           route(`/`);
-                        }else{
-                        route(`/${setting}`);}
+                        } else if (setting === "Logout") {
+                          localStorage.removeItem("token");
+                          sessionStorage.removeItem("token");
+                          route(`/Login`);
+                        } else {
+                          route(`/${setting}`);
+                        }
                         setSearchStatus(false);
                       }}
                     >
