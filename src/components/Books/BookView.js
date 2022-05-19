@@ -25,11 +25,12 @@ import Select from '@mui/material/Select';
 
 
 function SubheaderDividers({ book }) {
-    const [value, setValue] = React.useState(0);
+    // const [value, setValue] = React.useState(0);
     let userRate = {};
-    const [status, setStatus] = React.useState(0);
+    // const [status, setStatus] = React.useState(0);
     const [open, setOpen] = React.useState(false);
-
+let status = 0;
+let value = 0;
     const editRating = () => {
         const newRate = {
             isRated: userRate.isRated,
@@ -37,7 +38,7 @@ function SubheaderDividers({ book }) {
             status: status,
             review: userRate.review,
             rating: value
-        }
+        };while(newRate.status !== status)
         console.log(userRate.status);
         console.log(newRate);
         axios.patch(`https://good-reads-server.herokuapp.com/user/books/`, newRate, {
@@ -62,8 +63,8 @@ function SubheaderDividers({ book }) {
 
     const handleChange = (event) => {
         console.log(event.target.value);
-
-        setStatus(event.target.value);
+        status = event.target.value;
+        // setStatus(event.target.value);
         editRating();
     };
 
@@ -77,7 +78,7 @@ function SubheaderDividers({ book }) {
 
 
 
-    React.useEffect(() => {
+    // React.useEffect(() => {
         axios.get(`https://good-reads-server.herokuapp.com/user/rate/${book._id}`, {
             headers: {
                 token: sessionStorage.getItem("token"),
@@ -87,16 +88,16 @@ function SubheaderDividers({ book }) {
             .then(function (response) {
                 console.log(response.data);
                 userRate = response.data;
-                if (userRate.status)
-                    setStatus(userRate.status);
+               status = userRate.status;
+                    // setStatus(userRate.status);
 
-                if (userRate.rating)
-                    setValue(userRate.rating);
+                value = userRate.rating
+                    // setValue(userRate.rating);
             })
             .catch(function (error) {
                 console.log(error);
             })
-    }, []);
+    // }, []);
 
     const date = new Date(book.author[0].dateOfBirth)
     const rate = book.rating / book.noOfRatings;
@@ -159,8 +160,8 @@ function SubheaderDividers({ book }) {
                 <Rating
                     name="simple-controlled"
                     value={value}
-                    onChange={(event, newValue) => {
-                        setValue(newValue);
+                    onChange={(event, newValue) => {value =newValue;
+                        // setValue(newValue);
                         editRating();
                     }}
                 />
