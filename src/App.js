@@ -78,14 +78,9 @@ function App() {
                   </PrivateRoute>
                 }
               />
-              <Route
-                path="/Logout"
-                element={
-                  <PrivateRoute>
-                    <Login />
-                  </PrivateRoute>
-                  // <Home token={token} />
-                }
+              <Route 
+                path="/Logout" 
+                element={<Login />} 
               />
             </Routes>
           </div>
