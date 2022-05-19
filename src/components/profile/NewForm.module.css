@@ -51,10 +51,11 @@
 .myprofilebutton {
   height: 30px;
   background-color: rgb(255, 255, 255);
-  border-radius: 30%;
+  /* border-radius: 30%; */
   margin-left: 70%;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin-top: 1%;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  margin-top: 0%;
+  border-style: none;
 }
 
 .update {
@@ -86,4 +87,10 @@
 .registerBtn {
   margin-left: 42%;
   width: 100px;
+}
+
+.chooseImage {
+  text-align: center;
+  margin-left: 42%;
+  background-color: #77002e;
 }
