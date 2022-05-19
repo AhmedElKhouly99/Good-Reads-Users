@@ -15,7 +15,7 @@ export default function CatCard({ cat, isFirst }) {
                     <CardActionArea>
                         <CardMedia
                             component="img"
-                            height="140"
+                            // height="140"
                             image="https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"
                             alt="green iguana"
                         />
