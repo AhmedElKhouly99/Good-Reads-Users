@@ -30,7 +30,7 @@ export default function Login({ updateTokenHandler }) {
                     navigate('/');
                 })
                 .catch(function (error) {
-                    // document.getElementById('validate').innerHTML = `<li>${error.response.data}</li>`;
+                    document.getElementById('validate').innerHTML = `<li>${error.response.data}</li>`;
                     //   document.getElementById('login').reset()
                     console.log(error);
                 });
@@ -69,7 +69,7 @@ export default function Login({ updateTokenHandler }) {
                 </ul>
                 </div>
             </form>
-            <p><Link to={'/signup'}><a className='link registerLink'>Create new account</a></Link></p>
+            <p ><Link to={'/signup'}><a className='link registerLink'>Create new account</a></Link></p>
 
         </div>
     )

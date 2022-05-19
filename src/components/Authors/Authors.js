@@ -99,7 +99,7 @@ export default function Authors() {
             <>
                 <div className='row justify-content-around' style={{ marginTop: "5%" }}>
                     {
-                        authors.map((author) => { return (<Author author={author} />) })
+                        authors.map((author) => { return (<Author key={author._id} author={author} />) })
                     }
 
                 </div>

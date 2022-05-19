@@ -22,218 +22,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import "./BookView.css";
-
-
-
-function SubheaderDividers({ book }) {
-    // const [value, setValue] = React.useState(0);
-    let userRate = {};
-    // const [status, setStatus] = React.useState(0);
-    const [open, setOpen] = React.useState(false);
-let status = 0;
-let value = 0;
-    const editRating = () => {
-        const newRate = {
-            isRated: userRate.isRated,
-            Bid: book._id,
-            status: status,
-            review: userRate.review,
-            rating: value
-        };while(newRate.status !== status)
-        console.log(userRate.status);
-        console.log(newRate);
-        axios.patch(`https://good-reads-server.herokuapp.com/user/books/`, newRate, {
-            headers: {
-                token: sessionStorage.getItem("token"),
-            },
-            params: {
-                oldStatus: userRate.status ? userRate.status : 0,
-                oldRating: userRate.rating ? userRate.rating : 0
-            },
-        },
-        )
-            .then(function (response) {
-                console.log(response.data);
-
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-    };
-
-
-    const handleChange = (event) => {
-        console.log(event.target.value);
-        status = event.target.value;
-        // setStatus(event.target.value);
-        editRating();
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-
-
-    // React.useEffect(() => {
-        axios.get(`https://good-reads-server.herokuapp.com/user/rate/${book._id}`, {
-            headers: {
-                token: sessionStorage.getItem("token"),
-            }
-        },
-        )
-            .then(function (response) {
-                console.log(response.data);
-                userRate = response.data;
-               status = userRate.status;
-                    // setStatus(userRate.status);
-
-                value = userRate.rating
-                    // setValue(userRate.rating);
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-    // }, []);
-
-    const date = new Date(book.author[0].dateOfBirth)
-    const rate = book.rating / book.noOfRatings;
-    return (
-        <List
-            // className='row justify-content-around'
-            sx={{
-                width: '100%',
-                // maxWidth: 360,
-                bgcolor: 'beige',
-            }}
-        >
-            <ListItem className='row justify-content-around'>
-                {/* <ListItemText primary="Photo" /> */}
-                <img src={book.image} style={{ width: '20%' }} />
-            </ListItem>
-            <div class="myItem">
-            <Divider component="li"  />
-            <li>
-                <Typography
-                    sx={{ mt: 0.5, ml: 2 }}
-                    color="text.secondary"
-                    display="block"
-                    variant="caption"
-                    fontSize={14}
-                // secondary="Authors"
-                >
-                    Authors :
-                </Typography>
-            </li>
-            <ListItem>
-            <ListItemIcon sx={{ fontSize: 22 }}>🧑🏻</ListItemIcon>
-                <ListItemText primary={book.author[0].firstName + " " + book.author[0].lastName} secondary={`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`} />
-            </ListItem>
-            <Divider component="li" />
-            </div>
-            <div class="myItem">
-            <li>
-                <Typography
-                    sx={{ mt: 0.5, ml: 2 }}
-                    color="text.secondary"
-                    display="block"
-                    variant="caption"
-                    fontSize={14}
-                >
-                    Rating:
-                </Typography>
-            </li>
-            <ListItem>
-            <ListItemIcon sx={{ fontSize: 20 }}>🌟</ListItemIcon>
-                <Rating name="read-only" value={rate} readOnly />
-            </ListItem>
-
-            <Divider component="li" />
-            </div>
-            <div class="myItem">
-            <li>
-                <Typography
-                    sx={{ mt: 0.5, ml: 2 }}
-                    color="text.secondary"
-                    display="block"
-                    variant="caption"
-                    fontSize={14}
-                >
-                    Add Your Rate:
-                </Typography>
-            </li>
-            <ListItem>
-            <ListItemIcon sx={{ fontSize: 20 }}>🌟</ListItemIcon>
-                <Rating
-                    name="simple-controlled"
-                    value={value}
-                    onChange={(event, newValue) => {value =newValue;
-                        // setValue(newValue);
-                        editRating();
-                    }}
-                />
-            </ListItem>
-
-
-            <Divider component="li" />
-            </div>
-            <div class="myItem">
-            <li>
-                <Typography
-                    sx={{ mt: 0.5, ml: 2 }}
-                    color="text.secondary"
-                    display="block"
-                    variant="caption"
-                    fontSize={14}
-                // secondary="Authors"
-                >
-                    Add Book Status:
-                </Typography>
-            </li>
-            <ListItem>
-            <ListItemIcon sx={{ fontSize: 30 }}>📚</ListItemIcon>
-                <FormControl sx={{ m: 1, minWidth: 120 }}>
-                    <InputLabel id="demo-controlled-open-select-label">Status</InputLabel>
-                    <Select
-                        labelId="demo-controlled-open-select-label"
-                        id="demo-controlled-open-select"
-                        open={open}
-                        onClose={handleClose}
-                        onOpen={handleOpen}
-                        value={status}
-                        label="Status"
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={0}>
-                            <em>Add Book Status</em>
-                        </MenuItem>
-                        <MenuItem value={1}>Read</MenuItem>
-                        <MenuItem value={2}>Currently Reading</MenuItem>
-                        <MenuItem value={3}>Want To Read</MenuItem>
-                    </Select>
-                </FormControl>
-            </ListItem>
-                    </div>
-
-            {/* <ListItem>
-                <ListItemAvatar>
-                    <Avatar>
-                        <BeachAccessIcon />
-                    </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary="Vacation" secondary="July 20, 2014" />
-            </ListItem> */}
-        </List>
-    );
-}
-
-
-
-
+import BookModal from './BookModal'
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -243,7 +32,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function FullScreenBook({ openBook }) {
     const [open, setOpen] = React.useState(openBook.open);
     React.useEffect(() => { setOpen(openBook.open); }, [openBook.open]);
+    // const [bookStatus, setBookStatus] = React.useState({});
     console.log(openBook);
+    let bookStatus = {}
     //   const handleClickOpen = () => {
     //     setOpen(true);
     //   };
@@ -251,9 +42,13 @@ export default function FullScreenBook({ openBook }) {
     const handleClose = () => {
         openBook.open = false;
         setOpen(false);
+        // flag = true
     };
 
-    if (openBook.book)
+
+    if (openBook.book) {
+       
+        if(bookStatus !== {})
         return (
             <div>
                 {/* <Button variant="outlined" onClick={handleClickOpen}>
@@ -265,7 +60,7 @@ export default function FullScreenBook({ openBook }) {
                     onClose={handleClose}
                     TransitionComponent={Transition}
                 >
-                    <AppBar sx={{ position: 'relative' }}>
+                    <AppBar sx={{ position: 'relative', backgroundColor: '#81c3ca' }}>
                         <Toolbar>
                             <IconButton
                                 edge="start"
@@ -297,8 +92,15 @@ export default function FullScreenBook({ openBook }) {
                         />
                     </ListItem>
                 </List> */}
-                    <SubheaderDividers book={openBook.book} />
+                    {/* <SubheaderDividers book={openBook.book} /> */}
+                    {
+                        // <BookModal book={openBook.book} bookStatus={bookStatus} />
+                         bookStatus?<BookModal book={openBook.book} bookStatus={bookStatus} />:<h1>loading ...</h1>
+                        //  bookStatus?<Book book={openBook.book} bookStatus={bookStatus} />:<h1>loading ...</h1>
+
+                    }
                 </Dialog>
             </div>
         );
+    }
 }

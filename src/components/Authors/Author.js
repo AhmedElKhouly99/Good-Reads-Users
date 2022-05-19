@@ -9,7 +9,7 @@ import { CardActionArea } from '@mui/material';
 export default function Author( { author } ) {
 
   return (
-    <Card sx={{ maxWidth: 345, marginBottom: "2%" }}>
+    <Card key={author._id} sx={{ maxWidth: 345, marginBottom: "2%" }}>
       <CardActionArea>
         <CardMedia
           component="img"

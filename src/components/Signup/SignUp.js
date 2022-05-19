@@ -40,7 +40,7 @@ export default function SignUp() {
             axios.post("https://good-reads-server.herokuapp.com/user/signup", user)
                 .then(function (response) {
                     console.log(response.data);
-                    navigate('/');
+                    navigate('/login');
                 })
                 .catch(function (error) {
                     document.getElementById('validate').innerHTML = `<li>${error.response.data}</li>`;
@@ -91,6 +91,7 @@ export default function SignUp() {
                                 confPass = false;
                             } else {
                                 confPass = true;
+                                document.getElementById('validate').innerHTML = ""
                                 pass[1].setAttribute('class', 'form-control');
                             }
 

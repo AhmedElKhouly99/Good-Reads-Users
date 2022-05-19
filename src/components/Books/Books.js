@@ -69,7 +69,7 @@ Media.propTypes = {
     loading: PropTypes.bool,
 };
 
-
+const Bookmodal = React.memo(FullScreenBook); 
 export default function Books() {
     const [numPages, setNumPages] = useState(1);
     const [books, setBooks] = useState(undefined);
@@ -99,13 +99,13 @@ export default function Books() {
     // const handleOpenBook = (book, openFlag)=> {
 
     // }
-
-    if (books)
+    
+    if (books && (openBook != undefined))
         return (
             <>
                 <div className='row justify-content-around' style={{ marginTop: "5%" }}>
                     {
-                        books.map((book) => { return (<Book book={book} setOpenBook={setOpenBook} />) })
+                        books.map((book) => { return (<Book key={book._id} book={book} setOpenBook={setOpenBook} />) })
                     }
 
                 </div>
@@ -114,7 +114,8 @@ export default function Books() {
                         <Pagination count={numPages} color="primary" page={page} onChange={handleChange} />
                     </Stack>
                 </div>
-                <FullScreenBook  openBook={openBook}/>
+                {/* <FullScreenBook  openBook={openBook}/> */}
+                <Bookmodal openBook={openBook}/>
             </>
         )
 
