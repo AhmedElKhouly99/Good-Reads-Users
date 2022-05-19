@@ -20,7 +20,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
+import ListItemIcon from '@mui/material/ListItemIcon';
+import "./BookView.css";
 
 
 
@@ -107,56 +108,66 @@ let value = 0;
             sx={{
                 width: '100%',
                 // maxWidth: 360,
-                bgcolor: 'background.paper',
+                bgcolor: 'beige',
             }}
         >
             <ListItem className='row justify-content-around'>
-                <ListItemText primary="Photo" />
-                <img src={book.image} style={{ width: '15%' }} />
+                {/* <ListItemText primary="Photo" /> */}
+                <img src={book.image} style={{ width: '20%' }} />
             </ListItem>
-            <Divider component="li" />
+            <div class="myItem">
+            <Divider component="li"  />
             <li>
                 <Typography
                     sx={{ mt: 0.5, ml: 2 }}
                     color="text.secondary"
                     display="block"
                     variant="caption"
+                    fontSize={14}
                 // secondary="Authors"
                 >
                     Authors :
                 </Typography>
             </li>
             <ListItem>
+            <ListItemIcon sx={{ fontSize: 22 }}>🧑🏻</ListItemIcon>
                 <ListItemText primary={book.author[0].firstName + " " + book.author[0].lastName} secondary={`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`} />
             </ListItem>
             <Divider component="li" />
+            </div>
+            <div class="myItem">
             <li>
                 <Typography
                     sx={{ mt: 0.5, ml: 2 }}
                     color="text.secondary"
                     display="block"
                     variant="caption"
+                    fontSize={14}
                 >
-                    Rating
+                    Rating:
                 </Typography>
             </li>
             <ListItem>
+            <ListItemIcon sx={{ fontSize: 20 }}>🌟</ListItemIcon>
                 <Rating name="read-only" value={rate} readOnly />
             </ListItem>
 
             <Divider component="li" />
+            </div>
+            <div class="myItem">
             <li>
                 <Typography
                     sx={{ mt: 0.5, ml: 2 }}
                     color="text.secondary"
                     display="block"
                     variant="caption"
+                    fontSize={14}
                 >
-                    Rating
+                    Add Your Rate:
                 </Typography>
             </li>
             <ListItem>
-
+            <ListItemIcon sx={{ fontSize: 20 }}>🌟</ListItemIcon>
                 <Rating
                     name="simple-controlled"
                     value={value}
@@ -169,18 +180,22 @@ let value = 0;
 
 
             <Divider component="li" />
+            </div>
+            <div class="myItem">
             <li>
                 <Typography
                     sx={{ mt: 0.5, ml: 2 }}
                     color="text.secondary"
                     display="block"
                     variant="caption"
+                    fontSize={14}
                 // secondary="Authors"
                 >
-                    Add Book :
+                    Add Book Status:
                 </Typography>
             </li>
             <ListItem>
+            <ListItemIcon sx={{ fontSize: 30 }}>📚</ListItemIcon>
                 <FormControl sx={{ m: 1, minWidth: 120 }}>
                     <InputLabel id="demo-controlled-open-select-label">Status</InputLabel>
                     <Select
@@ -202,7 +217,7 @@ let value = 0;
                     </Select>
                 </FormControl>
             </ListItem>
-
+                    </div>
 
             {/* <ListItem>
                 <ListItemAvatar>
@@ -287,9 +302,3 @@ export default function FullScreenBook({ openBook }) {
             </div>
         );
 }
-
-
-
-
-
-
