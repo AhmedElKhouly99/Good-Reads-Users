@@ -68,7 +68,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const pages = ["categories", "books", "authors"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Home", "Logout"];
 // const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 const ResponsiveAppBar = ({ token, children }) => {
   const tok = token;
@@ -262,7 +262,10 @@ const ResponsiveAppBar = ({ token, children }) => {
                     <MenuItem
                       key={setting}
                       onClick={() => {
-                        route(`/${setting}`);
+                        if (setting=="Home"){
+                          route(`/`);
+                        }else{
+                        route(`/${setting}`);}
                         setSearchStatus(false);
                       }}
                     >
