@@ -9,14 +9,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import { format } from "date-fns";
 
 function NewForm() {
-  const [hamada, setHamada] = useState(true);
-  const [hamada2, setHamada2] = useState(true);
-  const [hamada3, setHamada3] = useState(true);
-  const [hamada4, setHamada4] = useState(true);
-  const [hamada5, setHamada5] = useState(true);
-  const [hamada6, setHamada6] = useState(true);
-  const [hamada7, setHamada7] = useState(true);
-  const [hamada8, setHamada8] = useState(true);
+  const [sFirstName, setFirstName] = useState(true);
+  const [sLastName, setLastName] = useState(true);
+  const [sEmail, setEmail] = useState(true);
+  const [sPassword, setPassword] = useState(true);
+  const [sConfirmPassword, setConfirmPassword] = useState(true);
+  const [sDOB, setDOB] = useState(true);
+  const [sCountry, setCountry] = useState(true);
+  const [sImage, setImage] = useState(true);
   const fnameRef = useRef();
   const lnameRef = useRef();
   const emailRef = useRef();
@@ -102,13 +102,13 @@ function NewForm() {
             required
             id="first"
             ref={fnameRef}
-            disabled={hamada}
+            disabled={sFirstName}
             className={classes.myprofileinput}
             defaultValue={user.firstName}
           />
           <button
             onClick={() => {
-              setHamada(false);
+              setFirstName(false);
             }}
             type="button"
             className={classes.myprofilebutton}
@@ -130,13 +130,13 @@ function NewForm() {
             required
             id="last"
             ref={lnameRef}
-            disabled={hamada2}
+            disabled={sLastName}
             className={classes.myprofileinput}
             defaultValue={user.lastName}
           />
           <button
             onClick={() => {
-              setHamada2(false);
+              setLastName(false);
             }}
             type="button"
             className={classes.myprofilebutton}
@@ -158,13 +158,13 @@ function NewForm() {
             required
             id="email"
             ref={emailRef}
-            disabled={hamada3}
+            disabled={sEmail}
             className={classes.myprofileinput}
             defaultValue={user.email}
           />
           <button
             onClick={() => {
-              setHamada3(false);
+              setEmail(false);
             }}
             type="button"
             className={classes.myprofilebutton}
@@ -186,7 +186,7 @@ function NewForm() {
             required
             id="password"
             ref={passwordRef}
-            disabled={hamada4}
+            disabled={sPassword}
             className={classes.myprofileinput}
             placeholder="**********"
           />
@@ -195,7 +195,7 @@ function NewForm() {
             className={classes.myprofilebutton}
             id="password"
             onClick={() => {
-              setHamada4(false);
+              setPassword(false);
             }}
           >
             <img
@@ -214,7 +214,7 @@ function NewForm() {
             required
             id="confirmpassword"
             ref={confirmpassRef}
-            disabled={hamada5}
+            disabled={sConfirmPassword}
             className={classes.myprofileinput}
             // defaultValue={user.password}
           />
@@ -223,7 +223,7 @@ function NewForm() {
             className={classes.myprofilebutton}
             id="confirmpassword"
             onClick={() => {
-              setHamada5(false);
+              setConfirmPassword(false);
             }}
           >
             <img
@@ -241,7 +241,7 @@ function NewForm() {
             required
             id="birth"
             ref={dateRef}
-            disabled={hamada6}
+            disabled={sDOB}
             className={classes.myprofileinput}
             defaultValue="2000-01-01"
             // defaultValue={format(user.date_of_birth, "yyyy-mm-dd")}
@@ -251,7 +251,7 @@ function NewForm() {
             className={classes.myprofilebutton}
             id="birth"
             onClick={() => {
-              setHamada6(false);
+              setDOB(false);
             }}
           >
             <img
@@ -270,7 +270,7 @@ function NewForm() {
             required
             id="country"
             ref={countryRef}
-            disabled={hamada7}
+            disabled={sCountry}
             className={classes.myprofileinput}
             defaultValue={user.country}
           />
@@ -279,7 +279,7 @@ function NewForm() {
             className={classes.myprofilebutton}
             id="country"
             onClick={() => {
-              setHamada7(false);
+              setCountry(false);
             }}
           >
             <img
@@ -297,7 +297,7 @@ function NewForm() {
             type="string"
             id="image"
             ref={imageRef}
-            disabled={hamada8}
+            disabled={sImage}
             className={classes.myprofileinput}
             defaultValue={user.image}
           />
@@ -306,7 +306,7 @@ function NewForm() {
             className={classes.myprofilebutton}
             id="image"
             onClick={() => {
-              setHamada8(false);
+              setImage(false);
             }}
           >
             <img
@@ -325,7 +325,7 @@ function NewForm() {
                 type="file"
                 multiple={false}
                 onDone={({ base64 }) => {
-                  // setHamada8(base64);
+                  // setImage(base64);
                 }}
               />{" "}
             </div>
@@ -333,7 +333,7 @@ function NewForm() {
         </div> */}
 
         {/* //.......................// */}
-        <div className={classes.actions} onClick={submitHandler}>
+        <div className={classes.actions}>
           {/* <button id="update" className={classes.registerBtn}>
             <p className={classes.registerTxt}>Update</p>
           </button> */}
