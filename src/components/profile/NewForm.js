@@ -1,12 +1,12 @@
 import classes from "./NewForm.module.css";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
-import TextField from "@mui/material/TextField";
-import { Label } from "@mui/icons-material";
-import FileBase64 from "react-file-base64";
+// import TextField from "@mui/material/TextField";
+// import { Label } from "@mui/icons-material";
+// import FileBase64 from "react-file-base64";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Moment from "moment";
-import { format } from "date-fns";
+// import Moment from "moment";
+// import { format } from "date-fns";
 
 function NewForm() {
   const [hamada, setHamada] = useState(true);
