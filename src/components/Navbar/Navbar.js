@@ -267,7 +267,9 @@ const ResponsiveAppBar = ({ token, children }) => {
                         } else if (setting === "Logout") {
                           localStorage.removeItem("token");
                           sessionStorage.removeItem("token");
-                          route(`/Login`);
+                          window.location.replace("http://localhost:3000/");
+                          // route(0)
+                          // route(`/Login`);
                         } else {
                           route(`/${setting}`);
                         }

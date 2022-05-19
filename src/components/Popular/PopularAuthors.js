@@ -11,7 +11,7 @@ import AuthorCard from './AuthorCard';
 export default function PopularAuthors() {
     const [popAuthors, setPopAuthors] = useState(undefined);
     useEffect(() => {
-        axios.get("https://good-reads-server.herokuapp.com/user/categories/popular")
+        axios.get("https://good-reads-server.herokuapp.com/user/authors/popular")
             .then(function (response) {
                 console.log(response.data);
                 setPopAuthors(response.data)

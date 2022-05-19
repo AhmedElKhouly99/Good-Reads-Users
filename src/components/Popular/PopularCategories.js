@@ -55,5 +55,5 @@ export default function PopularCategories() {
         )
     }
 
-    return <h2>rfehg</h2>
+    
 }

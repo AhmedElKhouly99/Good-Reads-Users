@@ -13,9 +13,14 @@ export default function Home({ token }) {
 
             <>
                 <div className='row justify-content-center' style={{ marginTop: "10%" }}>
-                    {/* <PopularAuthors /> */}
+                    <PopularAuthors />
                     <PopularBooks />
                     {/* <PopularCategories /> */}
+                </div>
+                <div className='row justify-content-center' style={{ marginTop: "10%" }}>
+                    {/* <PopularAuthors /> */}
+                    {/* <PopularBooks /> */}
+                    <PopularCategories />
                 </div>
             </>
 
