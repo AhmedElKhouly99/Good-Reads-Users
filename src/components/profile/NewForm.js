@@ -2,11 +2,8 @@ import classes from "./NewForm.module.css";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-<<<<<<< HEAD
 import FileBase64 from "react-file-base64";
-=======
 import { toDate } from "date-fns";
->>>>>>> 1751546314eeb99ebbe07727915b3e2c8ca1a07b
 
 function NewForm() {
   const [sFirstName, setFirstName] = useState(true);
@@ -53,7 +50,6 @@ function NewForm() {
           token: sessionStorage.getItem("token"),
         },
       })
-<<<<<<< HEAD
       .then(function (response) {
    
         setFirstName(true)
@@ -64,9 +60,6 @@ function NewForm() {
         setDOB(true)
         
       })
-=======
-      .then(function (response) {})
->>>>>>> 1751546314eeb99ebbe07727915b3e2c8ca1a07b
       .catch(function (error) {
         console.log(error);
       });
@@ -80,17 +73,8 @@ function NewForm() {
       })
       .then(function (response) {
         setUser(response.data);
-<<<<<<< HEAD
 
         
-=======
-        // console.log(typeof user.date_of_birth);
-        // console.log(user.date_of_birth);
-
-        // console.log(response.data);
-        // console.log("*******************");
-        // console.log(user);
->>>>>>> 1751546314eeb99ebbe07727915b3e2c8ca1a07b
       })
       .catch(function (error) {
         console.log(error);
