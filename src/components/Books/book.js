@@ -8,19 +8,47 @@ import Rating from '@mui/material/Rating';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { CardActionArea } from '@mui/material';
 import FullScreenBook from './BookView';
-
+import axios from 'axios'
 export default function Book({ book, setOpenBook }) {
-
   const [value, setValue] = React.useState(4);
   // const [Open, setOpen] = React.useState(false)
+
   const bookHandler = (event) => {
     const id = event.currentTarget.id;
-    setOpenBook({open:true, book: book});
-  }
+    axios.get(`https://good-reads-server.herokuapp.com/user/rate/${book._id}`, {
+      headers: {
+          token: sessionStorage.getItem("token"),
+      }
+  },
+  )
+      .then(function (response) {
+          console.log(response.data);
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+          // userRate = response.data;
+        book.myRating = response.data.rating;
+        book.status = response.data.status;
+        book.isRated = response.data.isRated;
+        //  setStatus(userRate.status);
+      //         // setStatus(userRate.status);
 
+          // value = userRate.rating
+              // setValue(userRate.rating);
+              setOpenBook({open:true, book: book});
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+    
+  
+    console.log("here")
+
+    
+  }
   const handleAdd = (event)=> {
     const id = event.currentTarget.id
   }
+
+  
 
   return (
     <>

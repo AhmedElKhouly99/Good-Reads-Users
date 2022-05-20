@@ -25,13 +25,12 @@ import "./BookView.css";
 
 
 
-function SubheaderDividers({ book }) {
-    // const [value, setValue] = React.useState(0);
-    let userRate = {};
+function SubheaderDividers({ book,value,status,setStatus,setValue, userRate }) {
+    const [ch, setCh] = React.useState(false);
+ console.log(value, "fsdf", status)
     // const [status, setStatus] = React.useState(0);
-    const [open, setOpen] = React.useState(false);
-let status = 0;
-let value = 0;
+    const [open, setOpen] = React.useState(false);  
+
     const editRating = () => {
         const newRate = {
             isRated: userRate.isRated,
@@ -39,14 +38,14 @@ let value = 0;
             status: status,
             review: userRate.review,
             rating: value
-        };while(newRate.status !== status)
+        };
         console.log(userRate.status);
         console.log(newRate);
         axios.patch(`https://good-reads-server.herokuapp.com/user/books/`, newRate, {
             headers: {
                 token: sessionStorage.getItem("token"),
             },
-            params: {
+            params: {   
                 oldStatus: userRate.status ? userRate.status : 0,
                 oldRating: userRate.rating ? userRate.rating : 0
             },
@@ -54,7 +53,7 @@ let value = 0;
         )
             .then(function (response) {
                 console.log(response.data);
-
+                setCh(true)
             })
             .catch(function (error) {
                 console.log(error);
@@ -64,7 +63,7 @@ let value = 0;
 
     const handleChange = (event) => {
         console.log(event.target.value);
-        status = event.target.value;
+        setStatus(event.target.value);
         // setStatus(event.target.value);
         editRating();
     };
@@ -79,29 +78,10 @@ let value = 0;
 
 
 
-    // React.useEffect(() => {
-        axios.get(`https://good-reads-server.herokuapp.com/user/rate/${book._id}`, {
-            headers: {
-                token: sessionStorage.getItem("token"),
-            }
-        },
-        )
-            .then(function (response) {
-                console.log(response.data);
-                userRate = response.data;
-               status = userRate.status;
-                    // setStatus(userRate.status);
-
-                value = userRate.rating
-                    // setValue(userRate.rating);
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-    // }, []);
+  
 
     const date = new Date(book.author[0].dateOfBirth)
-    const rate = book.rating / book.noOfRatings;
+    const rate = book.noOfRatings? (book.rating / book.noOfRatings):0;
     return (
         <List
             // className='row justify-content-around'
@@ -171,7 +151,7 @@ let value = 0;
                 <Rating
                     name="simple-controlled"
                     value={value}
-                    onChange={(event, newValue) => {value =newValue;
+                    onChange={(event, newValue) => {setValue(newValue);
                         // setValue(newValue);
                         editRating();
                     }}
@@ -242,7 +222,38 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function FullScreenBook({ openBook }) {
     const [open, setOpen] = React.useState(openBook.open);
-    React.useEffect(() => { setOpen(openBook.open); }, [openBook.open]);
+//     let status;
+// let value ;
+let userRate = {};
+let  [status,setStatus] = React.useState(0);
+let  [value,setValue] = React.useState(0);
+// setStatus(userRate.status);
+
+// let  value = userRate.rating;
+    React.useEffect(() => { setOpen(openBook.open);
+        if(openBook.book)
+        axios.get(`https://good-reads-server.herokuapp.com/user/rate/${openBook.book._id}`, {
+            headers: {
+                token: sessionStorage.getItem("token"),
+            }
+        },
+        )
+            .then(function (response) {
+                console.log(response.data);
+                // eslint-disable-next-line react-hooks/exhaustive-deps
+                userRate = response.data;
+              
+               setStatus(userRate.status);
+            //         // setStatus(userRate.status);
+    
+                // value = userRate.rating
+                    setValue(userRate.rating);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    
+    }, [openBook.open,value,status]);
     console.log(openBook);
     //   const handleClickOpen = () => {
     //     setOpen(true);
@@ -254,7 +265,11 @@ export default function FullScreenBook({ openBook }) {
     };
 
     if (openBook.book)
-        return (
+   { 
+       
+  console.log(status,"f",value)   
+  if(value)
+  return (
             <div>
                 {/* <Button variant="outlined" onClick={handleClickOpen}>
         Open full-screen dialog
@@ -297,8 +312,8 @@ export default function FullScreenBook({ openBook }) {
                         />
                     </ListItem>
                 </List> */}
-                    <SubheaderDividers book={openBook.book} />
+                    <SubheaderDividers book={openBook.book} value={value} status={status} setStatus={setStatus} setValue={setValue}  userRate={userRate} />
                 </Dialog>
             </div>
-        );
+        );}
 }

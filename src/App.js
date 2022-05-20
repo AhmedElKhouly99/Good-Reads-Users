@@ -15,7 +15,7 @@ import SignUp from "./components/Signup/SignUp";
 import FullScreenDialog from "./components/Books/BookView";
 import NewForm from "./components/profile/NewForm";
 import FormDialog from "./components/profile/modal";
-
+import NewBook from "./components/Books/newBook"
 const darkTheme = createTheme({
   palette: {
     mode: "light",
@@ -62,6 +62,15 @@ function App() {
                     <Books />
                   </PrivateRoute>
                 }
+              />
+               <Route
+                path="/bookprofile"
+                element={
+                  <PrivateRoute>
+                    <NewBook />
+                  </PrivateRoute>
+                }
+             
               />
               <Route
                 path="/authors"

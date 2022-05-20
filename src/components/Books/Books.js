@@ -9,8 +9,8 @@ import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Book from './book'
 import FullScreenBook from './BookView';
-
-
+import NewBook from './newBook'
+import { Link, useNavigate } from 'react-router-dom'
 const data = [
     {
 
@@ -75,7 +75,7 @@ export default function Books() {
     const [books, setBooks] = useState(undefined);
     const [page, setPage] = React.useState(1);
     const [openBook, setOpenBook] = useState({open:false, book:undefined});
-
+    const navigate = useNavigate();
     const handleChange = (event, value) => {
         setPage(value);
         // setBooks here
@@ -99,7 +99,10 @@ export default function Books() {
     // const handleOpenBook = (book, openFlag)=> {
 
     // }
-
+if(openBook.open){
+    // navigate({name:'/bookprofile', params: { book: openBook.book },})
+    return <NewBook  book={openBook.book}  />
+}
     if (books)
         return (
             <>
@@ -114,7 +117,8 @@ export default function Books() {
                         <Pagination count={numPages} color="primary" page={page} onChange={handleChange} />
                     </Stack>
                 </div>
-                <FullScreenBook  openBook={openBook}/>
+                
+                {/* <FullScreenBook  openBook={openBook}/> */}
             </>
         )
 
