@@ -54,7 +54,7 @@ export default function AuthorModal({ author }) {
 
     return (
         <>
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+            <List sx={{ width: '100%', backgroundImage: 'linear-gradient(to bottom right, beige, #81c3ca)',}}>
                 <ListItem alignItems="flex-start" style={{ marginTop: '1em', marginBottom: '2em', baddingLeft: 0, width: '40em' }}>
                     <ListItem >
                         <ListItemText primary="" />

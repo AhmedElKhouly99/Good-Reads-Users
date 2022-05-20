@@ -31,7 +31,7 @@ export default function FullScreenBook({ openBook }) {
        
         if(bookStatus !== {})
         return (
-            <div>
+            <div className='myBookView'>
 
                 <Dialog
                     fullScreen
@@ -39,7 +39,7 @@ export default function FullScreenBook({ openBook }) {
                     onClose={handleClose}
                     TransitionComponent={Transition}
                 >
-                    <AppBar sx={{ position: 'relative', backgroundColor: '#81c3ca' }}>
+                    <AppBar sx={{ position: 'relative', backgroundColor: '#6351ce' }}>
                         <Toolbar>
                             <IconButton
                                 edge="start"

@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-
+import "./author.css"
 
 export default function Author( { author, setOpenAuthor } ) {
 
@@ -13,7 +13,7 @@ export default function Author( { author, setOpenAuthor } ) {
   }
   
   return (
-    <Card key={author._id} sx={{ maxWidth: 345, marginBottom: "2%" }} onClick={authorHandler}>
+    <Card key={author._id} sx={{ width: 345, marginBottom: "2%" }} onClick={authorHandler} className="myAuthorCard">
       <CardActionArea>
         <CardMedia
           component="img"

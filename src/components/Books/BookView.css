@@ -1,3 +1,6 @@
 .myItem:hover{
     background-color: lightsteelblue;
 }
+.myBookView{
+    background-image: linear-gradient(to right, #81c3ca, #5dabdf, #6351ce);
+}

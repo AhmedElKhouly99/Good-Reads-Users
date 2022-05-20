@@ -14,6 +14,7 @@ import PrivateRoute from "./components/PrivateRoutes/PrivateRoute";
 import SignUp from "./components/Signup/SignUp";
 import FullScreenDialog from "./components/Books/BookView";
 import NewForm from "./components/profile/NewForm";
+import Footer from "./components/footer/footer";
 
 const darkTheme = createTheme({
   palette: {
@@ -95,6 +96,7 @@ function App() {
           />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </ThemeProvider>
   );

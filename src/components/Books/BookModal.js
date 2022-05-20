@@ -85,7 +85,7 @@ export default function BookModal({ book, bookStatus }) {
         <List
             sx={{
                 width: '100%',
-                bgcolor: 'beige',
+                backgroundImage: 'linear-gradient(to bottom right, beige, #81c3ca)',
             }}
         >
             <ListItem className='row justify-content-around'>

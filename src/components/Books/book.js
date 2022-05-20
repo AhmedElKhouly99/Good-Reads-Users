@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import { CardActionArea } from '@mui/material';
+import "./book.css";
 
 export default function Book({ book, setOpenBook }) {
 
@@ -20,11 +21,11 @@ export default function Book({ book, setOpenBook }) {
 
   return (
     <>
-      <Card sx={{ maxWidth: 345, marginBottom: "2%" }} onClick={bookHandler} id={book._id}>
+      <Card sx={{ width: 310, marginBottom: "2%" }} onClick={bookHandler} id={book._id} className="myBookCard">
         <CardActionArea>
           <CardMedia
             component="img"
-            height="300"
+            height="280"
             image={book.image ? book.image : "https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"}
             alt="green iguana"
           />
