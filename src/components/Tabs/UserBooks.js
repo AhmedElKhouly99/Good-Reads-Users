@@ -44,7 +44,7 @@ function UserBooks({ tab }) {
     if (loadedbooks)
         return (
             <>
-                <div>
+                <div style={{overflow: 'auto'}}>
                     <div className="App">
                         <table>
                             <tr>
