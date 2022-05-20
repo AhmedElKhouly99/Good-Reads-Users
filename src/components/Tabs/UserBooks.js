@@ -57,7 +57,7 @@ function UserBooks({ tab }) {
                             </tr>
                             {   (()=>{let counter = 0
                                 return loadedbooks.map((val, key) => {
-                                    if (val.bookRate.status == tab || tab == 0)
+                                    if (val.bookRate.status === tab || tab === 0)
                                         {
                                             counter ++;
                                             return (
