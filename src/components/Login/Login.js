@@ -56,14 +56,14 @@ export default function Login({ updateTokenHandler }) {
                     <label class="form-check-label" style={{ float: 'left' }}>Keep me logged in</label>
                 </div>
 
-                <input type="submit" class="btn btn-outline-primary button-28 my-5 loginBtn" variant="outlined" value="Login"></input>
+                <input type="submit" class="btn btn-primary button-28 my-5 loginBtn" style={{borderColor:"blueviolet", borderWidth:2}} value="Login"></input>
                 <div class="errorDiv">
                 <ul typeof='disc' id='validate'>
 
                 </ul>
                 </div>
             </form>
-            <p ><Link to={'/signup'}><a className='link registerLink'>Create new account</a></Link></p>
+            <p ><Link to={'/signup'}><a className='link registerLink' style={{color:"black"}}>Create new account</a></Link></p>
 
         </div>
     )
