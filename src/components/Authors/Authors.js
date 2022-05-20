@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import Author from './Author';
+import FullScreenAuthor from './AuthorView';
 
 
 const data = [
@@ -51,11 +52,12 @@ Media.propTypes = {
     loading: PropTypes.bool,
 };
 
-
+const AuthorModal = React.memo(FullScreenAuthor); 
 export default function Authors() {
     const [authors, setAuthors] = useState(undefined);
     const [page, setPage] = React.useState(1);
     const [numPages, setNumPages] = useState(1);
+    const [openAuthor, setOpenAuthor] = useState({open:false, author:undefined})
     const handleChange = (event, value) => {
         setPage(value);
         // setAuthors here
@@ -77,13 +79,13 @@ export default function Authors() {
             })
     }, [page])
 
-
-    if (authors)
+    if (authors && (openAuthor != undefined))
+    // if (authors)
         return (
             <>
                 <div className='row justify-content-around' style={{ marginTop: "5%" }}>
                     {
-                        authors.map((author) => { return (<Author key={author._id} author={author} />) })
+                        authors.map((author) => { return (<Author key={author._id} author={author} setOpenAuthor={setOpenAuthor}/>) })
                     }
 
                 </div>
@@ -92,6 +94,7 @@ export default function Authors() {
                         <Pagination count={numPages} color="primary" page={page} onChange={handleChange} />
                     </Stack>
                 </div>
+                <AuthorModal openAuthor={openAuthor}/>
             </>
         )
 

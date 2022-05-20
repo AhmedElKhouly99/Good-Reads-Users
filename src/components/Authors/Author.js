@@ -6,10 +6,14 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
 
-export default function Author({ author }) {
+export default function Author( { author, setOpenAuthor } ) {
 
+  const authorHandler = (event) => {
+    setOpenAuthor({open:true, author: author});
+  }
+  
   return (
-    <Card key={author._id} sx={{ maxWidth: 345, marginBottom: "2%" }}>
+    <Card key={author._id} sx={{ maxWidth: 345, marginBottom: "2%" }} onClick={authorHandler}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -22,7 +26,7 @@ export default function Author({ author }) {
             {author.fullname ? author.fullname : author.firstName + " " + author.lastName}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Date of Birth : 20/2/1979
+            Date of Birth : {author.dateOfBirth}
           </Typography>
         </CardContent>
       </CardActionArea>
