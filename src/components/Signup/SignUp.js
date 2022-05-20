@@ -101,13 +101,13 @@ export default function SignUp() {
 
                     <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1" value={'male'} />
                     <label class="form-check-label alignLable" for="flexRadioDefault1">
-                        male
+                        Male
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2" value={'female'} />
                     <label class="form-check-label alignLable" for="flexRadioDefault2">
-                        female
+                        Female
                     </label>
                 </div>
                 <div class="errorDiv">
@@ -115,10 +115,10 @@ export default function SignUp() {
 
                     </ul>
                 </div>
-                <input type="submit" class="btn btn-outline-primary button-28 my-3 registerBtn" value="REGISTER"></input>
+                <input type="submit" class="btn btn-primary button-28 my-3 registerBtn" value="Register"></input>
             </form>
 
-            <p className='loginLink'>Already have an account? <Link to={'/login'}><a className='link'>Sign in</a></Link></p>
+            <p className='loginLink'>Already have an account? <Link to={'/login'}><a className='link'  style={{color:"black"}}>Sign in</a></Link></p>
         </div>
     )
 }
