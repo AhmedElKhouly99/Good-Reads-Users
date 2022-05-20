@@ -111,7 +111,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
@@ -139,7 +139,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
@@ -167,7 +167,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
@@ -195,7 +195,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
@@ -224,7 +224,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
@@ -252,7 +252,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
@@ -279,7 +279,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
@@ -289,8 +289,8 @@ function NewForm() {
 
           <input
             type="submit"
-            class="btn btn-outline-primary button-28 my-3 registerBtn"
-            value="UPDATE"
+            class="btn btn-primary button-28 my-3 registerBtn"
+            value="Update"
           ></input>
         </div>
       </form>
