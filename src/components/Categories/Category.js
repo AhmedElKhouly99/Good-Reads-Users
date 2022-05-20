@@ -3,8 +3,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
+import CategoryBooks from './CategoryView';
 
-export default function Category( { cat } ) {
+export default function Category( { cat, setRender } ) {
+
+  const handleClick = ()=>{
+    setRender({open: true, category: cat});
+  }
+
   return (
     <Card sx={{ maxWidth: 300, marginTop: '5%' }}>
       <CardActionArea>
@@ -16,7 +22,7 @@ export default function Category( { cat } ) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={handleClick}>
           Go To Books
         </Button>
       </CardActions>
