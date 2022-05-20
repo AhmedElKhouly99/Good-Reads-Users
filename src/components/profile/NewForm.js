@@ -64,6 +64,12 @@ function NewForm() {
       })
       .then(function (response) {
         setUser(response.data);
+        console.log(typeof user.date_of_birth);
+        console.log(user.date_of_birth);
+
+        console.log(response.data)
+        console.log("*******************");
+        console.log(user);
       })
       .catch(function (error) {
         console.log(error);
@@ -95,6 +101,8 @@ function NewForm() {
           />
           <button
             onClick={() => {
+              console.log(user);
+              console.log(typeof user.date_of_birth)
               setFirstName(false);
             }}
             type="button"
@@ -204,7 +212,7 @@ function NewForm() {
             ref={dateRef}
             disabled={sDOB}
             className={classes.myprofileinput}
-            defaultValue="2000-01-01"
+            defaultValue="2022-02-02"
           />
           <button
             type="button"

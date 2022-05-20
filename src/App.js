@@ -101,5 +101,6 @@ function App() {
     </ThemeProvider>
   );
 }
-
+// npm install && serve -s build
 export default App;
+// react-scripts start
