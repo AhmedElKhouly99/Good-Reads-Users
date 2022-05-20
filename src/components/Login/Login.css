@@ -6,8 +6,12 @@
     color: darkslateblue;
 }
 .loginBtn{
-    margin-left: 42%;
-    width: 100px;
+    margin-left: 40%;
+    width: 150px;
+    height: 60px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: blueviolet;
 }
 .registerLink{
     margin-left: 72%;

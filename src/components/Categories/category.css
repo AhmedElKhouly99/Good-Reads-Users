@@ -1,0 +1,19 @@
+@import url('https://fonts.google.com/specimen/Lobster?query=lobster');
+
+.myCategoryCard{
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    border-width: 2px;
+    border-style: none solid solid none;
+    border-color: blueviolet;
+    width: 20%;
+}
+.myCategoryCard:hover{
+    background-color: lightgrey;
+    cursor: pointer;
+    width: 30%;
+}
+.myCategoryCard:active{
+    border-style: solid solid solid solid;
+    border-color: firebrick;
+}

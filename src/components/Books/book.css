@@ -1,0 +1,15 @@
+.myBookCard{
+    border-width: 2px;
+    border-style: none solid solid none;
+    border-color: blueviolet;
+}
+
+.myBookCard:hover{
+    background-color: lightgrey;
+    cursor: pointer;
+    width: 30%;
+}
+.myBookCard:active{
+    border-style: solid solid solid solid;
+    border-color: firebrick;
+}

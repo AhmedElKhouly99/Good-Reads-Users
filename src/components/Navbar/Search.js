@@ -25,7 +25,6 @@ export default function SearchTabs({ search }) {
     switch (value) {
       case 0:
         uri = "https://good-reads-server.herokuapp.com/users/books";
-        // type = 
         break;
 
       case 1:
@@ -44,7 +43,6 @@ export default function SearchTabs({ search }) {
       }
     })
       .then(function (response) {
-        console.log(response.data);
         setItems(response.data)
       })
       .catch(function (error) {
@@ -57,7 +55,6 @@ export default function SearchTabs({ search }) {
     {
       console.log(items);
       return (
-      // <ResponsiveAppBar>
       <>
         <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
           <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example" centered>
@@ -72,19 +69,16 @@ export default function SearchTabs({ search }) {
                 switch (value) {
                   case 0:
                     return items.map((book) => { 
-                      console.log(book);
                       return (<Book book={book} />) 
                     })
                     break;
                   case 1:
                     return items.map((cat) => { 
-                      console.log(cat);
                       return (<Category cat={cat} />) 
                     })
                     break;
                   case 2:
                     return items.map((author) => { 
-                      console.log(author);
                       return (<Author author={author} />) 
                     })  
                     break;
@@ -95,6 +89,5 @@ export default function SearchTabs({ search }) {
           }
         </div>
       </>
-      // </ResponsiveAppBar>
     );}
 }

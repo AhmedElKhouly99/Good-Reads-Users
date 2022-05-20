@@ -1,0 +1,14 @@
+.myAuthorCard{
+    border-width: 2px;
+    border-style: none solid solid none;
+    border-color: blueviolet;
+}
+.myAuthorCard:hover{
+    background-color: lightgrey;
+    cursor: pointer;
+    width: 33%;
+}
+.myAuthorCard:active{
+    border-style: solid solid solid solid;
+    border-color: firebrick;
+}

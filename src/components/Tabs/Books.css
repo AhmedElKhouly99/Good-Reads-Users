@@ -1,0 +1,66 @@
+.myHome{
+  background-color: #81c3ca;
+}
+.xBtn{
+    background-color: maroon;
+    color: white;
+    border-radius: 1px;
+    border-color: black;
+    border-width: 1px;
+    margin: 2px;
+    width: 100px;
+    height: 35px;
+}
+.xBtn:hover{
+  /* height: 40px;
+  width: 110px; */
+  background-color: red;
+}
+.ipTxt{
+    background-color: yellow;
+    border-color: black;
+    border: 2px;
+    margin-left: 40%;
+}
+
+.App {
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+.App tr:hover {background-color: #ddd;}
+  table {
+    border: 2px solid black;
+    width: 100%;
+    height: auto;
+    margin: 2px;
+    padding: 2px;
+  }
+    
+  th {
+    /* border-bottom: 1px solid black; */
+    border: 1px solid #ddd;
+    padding: 8px;
+    /* padding-top: 12px;
+    padding-bottom: 12px; */
+    text-align: center;
+    background-color: #29adce;
+    color: white;
+  }
+    
+  td {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 8px;
+  }  
+
+  /* ---------------------------------- Home ------------------------------------- */
+ .bg{
+   width: 100%;
+   height: 100%;
+ }
+ /* .homeDiv{
+  width: 100%;
+  height: 100%;
+ } */

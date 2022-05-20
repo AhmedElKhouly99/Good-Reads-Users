@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import Author from './Author';
+import FullScreenAuthor from './AuthorView';
 
 
 const data = [
@@ -29,27 +30,11 @@ function Media(props) {
         <Grid className='row justify-content-center' container wrap="nowrap">
             {(loading ? Array.from(new Array(3)) : data).map((item, index) => (
                 <Box className='col-3' key={index} sx={{ marginRight: 0.5, my: 5 }}>
-                    {/* {item ? (
-                        <img
-                            style={{ width: 210, height: 118 }}
-                            alt={item.title}
-                            src={item.src}
-                        />
-                    ) : ( */}
-                    <Skeleton variant="rectangular" width={210} height={118} />
-                    {/* )} */}
 
+                    <Skeleton variant="rectangular" width={210} height={118} />
                     {item ? (
                         <Box sx={{ pr: 2 }}>
-                            {/* <Typography gutterBottom variant="body2">
-                                {item.title}
-                            </Typography>
-                            <Typography display="block" variant="caption" color="text.secondary">
-                                {item.channel}
-                            </Typography>
-                            <Typography variant="caption" color="text.secondary">
-                                {`${item.views} • ${item.createdAt}`}
-                            </Typography> */}
+
                         </Box>
                     ) : (
                         <Box sx={{ pt: 0.5 }}>
@@ -67,11 +52,12 @@ Media.propTypes = {
     loading: PropTypes.bool,
 };
 
-
+const AuthorModal = React.memo(FullScreenAuthor); 
 export default function Authors() {
     const [authors, setAuthors] = useState(undefined);
     const [page, setPage] = React.useState(1);
     const [numPages, setNumPages] = useState(1);
+    const [openAuthor, setOpenAuthor] = useState({open:false, author:undefined})
     const handleChange = (event, value) => {
         setPage(value);
         // setAuthors here
@@ -93,21 +79,22 @@ export default function Authors() {
             })
     }, [page])
 
-
-    if (authors)
+    if (authors && (openAuthor != undefined))
+    // if (authors)
         return (
             <>
                 <div className='row justify-content-around' style={{ marginTop: "5%" }}>
                     {
-                        authors.map((author) => { return (<Author author={author} />) })
+                        authors.map((author) => { return (<Author key={author._id} author={author} setOpenAuthor={setOpenAuthor}/>) })
                     }
 
                 </div>
-                <div className='row justify-content-center'>
-                    <Stack className='col-4' spacing={2}>
+                <div className='row justify-content-around'>
+                    <Stack style={{marginLeft: '85%'}}  spacing={2}>
                         <Pagination count={numPages} color="primary" page={page} onChange={handleChange} />
                     </Stack>
                 </div>
+                <AuthorModal openAuthor={openAuthor}/>
             </>
         )
 

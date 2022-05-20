@@ -16,6 +16,8 @@ import FullScreenDialog from "./components/Books/BookView";
 import NewForm from "./components/profile/NewForm";
 import FormDialog from "./components/profile/modal";
 import NewBook from "./components/Books/newBook"
+import Footer from "./components/footer/footer";
+
 const darkTheme = createTheme({
   palette: {
     mode: "light",
@@ -81,20 +83,16 @@ function App() {
                 }
               />
               <Route
-                path="/profile"
+                path="/Profile"
                 element={
                   <PrivateRoute>
                     <NewForm />
                   </PrivateRoute>
                 }
               />
-              <Route
-                path="/Logout"
-                element={
-                  <PrivateRoute>
-                    <Login />
-                  </PrivateRoute>
-                }
+              <Route 
+                path="/Logout" 
+                element={<Login />} 
               />
             </Routes>
           </div>
@@ -109,9 +107,11 @@ function App() {
           />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </ThemeProvider>
   );
 }
-
+// npm install && serve -s build
 export default App;
+// react-scripts start

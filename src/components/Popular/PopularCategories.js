@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
 import CatCard from './CatCard';
 
 
@@ -13,7 +8,6 @@ export default function PopularCategories() {
     useEffect(() => {
         axios.get("https://good-reads-server.herokuapp.com/user/categories/popular")
             .then(function (response) {
-                console.log(response.data);
                 setPopCats(response.data)
             })
             .catch(function (error) {
@@ -36,9 +30,9 @@ export default function PopularCategories() {
                     {
                         popCats.map((cat) => {
                             console.log(cat)
-                                return (  
-                                    <CatCard cat={cat} isFirst={popCats[0] === cat ? true : false} />
-                                )
+                            return (
+                                <CatCard cat={cat} isFirst={popCats[0] === cat ? true : false} />
+                            )
                         })
                     }
 
@@ -55,5 +49,5 @@ export default function PopularCategories() {
         )
     }
 
-    return <h2>rfehg</h2>
+
 }

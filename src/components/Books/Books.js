@@ -5,7 +5,6 @@ import Stack from '@mui/material/Stack';
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Book from './book'
 import FullScreenBook from './BookView';
@@ -31,27 +30,12 @@ function Media(props) {
         <Grid className='row justify-content-center' container wrap="nowrap">
             {(loading ? Array.from(new Array(3)) : data).map((item, index) => (
                 <Box className='col-3' key={index} sx={{ marginRight: 0.5, my: 5 }}>
-                    {/* {item ? (
-                        <img
-                            style={{ width: 210, height: 118 }}
-                            alt={item.title}
-                            src={item.src}
-                        />
-                    ) : ( */}
-                        <Skeleton variant="rectangular" width={210} height={118} />
-                    {/* )} */}
+
+                    <Skeleton variant="rectangular" width={210} height={118} />
 
                     {item ? (
                         <Box sx={{ pr: 2 }}>
-                            {/* <Typography gutterBottom variant="body2">
-                                {item.title}
-                            </Typography>
-                            <Typography display="block" variant="caption" color="text.secondary">
-                                {item.channel}
-                            </Typography>
-                            <Typography variant="caption" color="text.secondary">
-                                {`${item.views} • ${item.createdAt}`}
-                            </Typography> */}
+
                         </Box>
                     ) : (
                         <Box sx={{ pt: 0.5 }}>
@@ -69,16 +53,20 @@ Media.propTypes = {
     loading: PropTypes.bool,
 };
 
-
+const Bookmodal = React.memo(FullScreenBook);
 export default function Books() {
     const [numPages, setNumPages] = useState(1);
     const [books, setBooks] = useState(undefined);
     const [page, setPage] = React.useState(1);
+<<<<<<< HEAD
     const [openBook, setOpenBook] = useState({open:false, book:undefined});
     const navigate = useNavigate();
+=======
+    const [openBook, setOpenBook] = useState({ open: false, book: undefined });
+
+>>>>>>> 5ef79c46244d6e95286af44b2663cba4f194b9a8
     const handleChange = (event, value) => {
         setPage(value);
-        // setBooks here
     };
     useEffect(() => {
         axios.get("https://good-reads-server.herokuapp.com/user/books/", {
@@ -87,7 +75,6 @@ export default function Books() {
             }
         })
             .then(function (response) {
-                console.log(response.data.data);
                 setBooks(response.data.data)
                 setNumPages(response.data.pages)
             })
@@ -96,29 +83,36 @@ export default function Books() {
             })
     }, [page])
 
-    // const handleOpenBook = (book, openFlag)=> {
 
+<<<<<<< HEAD
     // }
 if(openBook.open){
     // navigate({name:'/bookprofile', params: { book: openBook.book },})
     return <NewBook  book={openBook.book}  />
 }
     if (books)
+=======
+    if (books && (openBook != undefined))
+>>>>>>> 5ef79c46244d6e95286af44b2663cba4f194b9a8
         return (
             <>
                 <div className='row justify-content-around' style={{ marginTop: "5%" }}>
                     {
-                        books.map((book) => { return (<Book book={book} setOpenBook={setOpenBook} />) })
+                        books.map((book) => { return (<Book key={book._id} book={book} setOpenBook={setOpenBook} />) })
                     }
 
                 </div>
-                <div className='row justify-content-center'>
-                    <Stack className='col-4' spacing={2}>
+                <div className='row justify-content-around'>
+                    <Stack style={{marginLeft: '85%'}} spacing={2}>
                         <Pagination count={numPages} color="primary" page={page} onChange={handleChange} />
                     </Stack>
                 </div>
+<<<<<<< HEAD
                 
                 {/* <FullScreenBook  openBook={openBook}/> */}
+=======
+                <Bookmodal openBook={openBook} />
+>>>>>>> 5ef79c46244d6e95286af44b2663cba4f194b9a8
             </>
         )
 

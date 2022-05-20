@@ -1,27 +1,14 @@
 import * as React from 'react';
-import axios from 'axios';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import ListItemText from '@mui/material/ListItemText';
-import ListItem from '@mui/material/ListItem';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import Rating from '@mui/material/Rating';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import "./BookView.css";
+<<<<<<< HEAD
 
 
 
@@ -214,6 +201,9 @@ function SubheaderDividers({ book,value,status,setStatus,setValue, userRate }) {
 
 
 
+=======
+import BookModal from './BookModal'
+>>>>>>> 5ef79c46244d6e95286af44b2663cba4f194b9a8
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -222,6 +212,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function FullScreenBook({ openBook }) {
     const [open, setOpen] = React.useState(openBook.open);
+<<<<<<< HEAD
 //     let status;
 // let value ;
 let userRate = {};
@@ -258,12 +249,18 @@ let  [value,setValue] = React.useState(0);
     //   const handleClickOpen = () => {
     //     setOpen(true);
     //   };
+=======
+    React.useEffect(() => { setOpen(openBook.open); }, [openBook.open]);
+    let bookStatus = {}
+
+>>>>>>> 5ef79c46244d6e95286af44b2663cba4f194b9a8
 
     const handleClose = () => {
         openBook.open = false;
         setOpen(false);
     };
 
+<<<<<<< HEAD
     if (openBook.book)
    { 
        
@@ -274,13 +271,22 @@ let  [value,setValue] = React.useState(0);
                 {/* <Button variant="outlined" onClick={handleClickOpen}>
         Open full-screen dialog
       </Button> */}
+=======
+
+    if (openBook.book) {
+       
+        if(bookStatus !== {})
+        return (
+            <div className='myBookView'>
+
+>>>>>>> 5ef79c46244d6e95286af44b2663cba4f194b9a8
                 <Dialog
                     fullScreen
                     open={open}
                     onClose={handleClose}
                     TransitionComponent={Transition}
                 >
-                    <AppBar sx={{ position: 'relative' }}>
+                    <AppBar sx={{ position: 'relative', backgroundColor: '#6351ce' }}>
                         <Toolbar>
                             <IconButton
                                 edge="start"
@@ -300,6 +306,7 @@ let  [value,setValue] = React.useState(0);
                             </Button>
                         </Toolbar>
                     </AppBar>
+<<<<<<< HEAD
                     {/* <List>
                     <ListItem button>
                         <ListItemText primary="Phone ringtone" secondary="Titania" />
@@ -316,4 +323,13 @@ let  [value,setValue] = React.useState(0);
                 </Dialog>
             </div>
         );}
+=======
+                    {
+                         bookStatus?<BookModal book={openBook.book} bookStatus={bookStatus} />:<h1>loading ...</h1>
+                    }
+                </Dialog>
+            </div>
+        );
+    }
+>>>>>>> 5ef79c46244d6e95286af44b2663cba4f194b9a8
 }
