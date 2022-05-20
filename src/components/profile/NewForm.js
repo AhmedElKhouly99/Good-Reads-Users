@@ -2,7 +2,11 @@ import classes from "./NewForm.module.css";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+<<<<<<< HEAD
 import FileBase64 from "react-file-base64";
+=======
+import { toDate } from "date-fns";
+>>>>>>> 1751546314eeb99ebbe07727915b3e2c8ca1a07b
 
 function NewForm() {
   const [sFirstName, setFirstName] = useState(true);
@@ -49,6 +53,7 @@ function NewForm() {
           token: sessionStorage.getItem("token"),
         },
       })
+<<<<<<< HEAD
       .then(function (response) {
    
         setFirstName(true)
@@ -59,6 +64,9 @@ function NewForm() {
         setDOB(true)
         
       })
+=======
+      .then(function (response) {})
+>>>>>>> 1751546314eeb99ebbe07727915b3e2c8ca1a07b
       .catch(function (error) {
         console.log(error);
       });
@@ -72,13 +80,39 @@ function NewForm() {
       })
       .then(function (response) {
         setUser(response.data);
+<<<<<<< HEAD
 
         
+=======
+        // console.log(typeof user.date_of_birth);
+        // console.log(user.date_of_birth);
+
+        // console.log(response.data);
+        // console.log("*******************");
+        // console.log(user);
+>>>>>>> 1751546314eeb99ebbe07727915b3e2c8ca1a07b
       })
       .catch(function (error) {
         console.log(error);
       });
   }, []);
+
+  // console.log(user.date_of_birth);
+  // console.log(user);
+  // let myDate =
+  //   ("0" + (date.getMonth() + 1)).slice(-2) +
+  //   "/" +
+  //   ("0" + date.getDate()).slice(-2) +
+  //   "/" +
+  //   date.getFullYear();
+  // console.log(typeof myDate);
+
+  //...........................//
+  // let curr = new Date(user.date_of_birth);
+  // console.log(curr);
+  // let date = curr.toISOString();
+  // curr.toJSON().slice(0, 10);
+  // console.log(curr);
 
   return (
     <div>
@@ -106,7 +140,7 @@ function NewForm() {
           <button
             onClick={() => {
               console.log(user);
-              console.log(typeof user.date_of_birth)
+              console.log(typeof user.date_of_birth);
               setFirstName(false);
             }}
             type="button"
@@ -115,7 +149,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
@@ -143,7 +177,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
@@ -171,7 +205,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
@@ -199,7 +233,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
@@ -209,6 +243,7 @@ function NewForm() {
           <label className={classes.myprofilelabel} htmlFor="birth">
             Date Of Birth
           </label>
+
           <input
             type="date"
             required
@@ -216,7 +251,7 @@ function NewForm() {
             ref={dateRef}
             disabled={sDOB}
             className={classes.myprofileinput}
-            defaultValue="2022-02-02"
+            defaultValue="2000-01-01"
           />
           <button
             type="button"
@@ -228,7 +263,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
@@ -256,7 +291,7 @@ function NewForm() {
           >
             <img
               className={classes.myProfileIcon}
-              src="edit.png"
+              src="edi.png"
               alt="Edit"
             ></img>
           </button>
