@@ -2,7 +2,7 @@ import classes from "./NewForm.module.css";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { toDate } from "date-fns";
 
 function NewForm() {
   const [sFirstName, setFirstName] = useState(true);
@@ -49,8 +49,7 @@ function NewForm() {
           token: sessionStorage.getItem("token"),
         },
       })
-      .then(function (response) {
-      })
+      .then(function (response) {})
       .catch(function (error) {
         console.log(error);
       });
@@ -64,17 +63,34 @@ function NewForm() {
       })
       .then(function (response) {
         setUser(response.data);
-        console.log(typeof user.date_of_birth);
-        console.log(user.date_of_birth);
+        // console.log(typeof user.date_of_birth);
+        // console.log(user.date_of_birth);
 
-        console.log(response.data)
-        console.log("*******************");
-        console.log(user);
+        // console.log(response.data);
+        // console.log("*******************");
+        // console.log(user);
       })
       .catch(function (error) {
         console.log(error);
       });
   }, []);
+
+  // console.log(user.date_of_birth);
+  // console.log(user);
+  // let myDate =
+  //   ("0" + (date.getMonth() + 1)).slice(-2) +
+  //   "/" +
+  //   ("0" + date.getDate()).slice(-2) +
+  //   "/" +
+  //   date.getFullYear();
+  // console.log(typeof myDate);
+
+  //...........................//
+  // let curr = new Date(user.date_of_birth);
+  // console.log(curr);
+  // let date = curr.toISOString();
+  // curr.toJSON().slice(0, 10);
+  // console.log(curr);
 
   return (
     <div>
@@ -102,7 +118,7 @@ function NewForm() {
           <button
             onClick={() => {
               console.log(user);
-              console.log(typeof user.date_of_birth)
+              console.log(typeof user.date_of_birth);
               setFirstName(false);
             }}
             type="button"
@@ -205,6 +221,7 @@ function NewForm() {
           <label className={classes.myprofilelabel} htmlFor="birth">
             Date Of Birth
           </label>
+
           <input
             type="date"
             required
@@ -212,7 +229,7 @@ function NewForm() {
             ref={dateRef}
             disabled={sDOB}
             className={classes.myprofileinput}
-            defaultValue="2022-02-02"
+            defaultValue="2000-01-01"
           />
           <button
             type="button"
@@ -286,7 +303,6 @@ function NewForm() {
         </div>
 
         <div className={classes.actions}>
-
           <input
             type="submit"
             class="btn btn-outline-primary button-28 my-3 registerBtn"
