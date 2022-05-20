@@ -1,17 +1,14 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import IconButton from '@mui/material/IconButton';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import { CardActionArea } from '@mui/material';
-import FullScreenBook from './BookView';
 
 export default function Book({ book, setOpenBook }) {
 
-  const [value, setValue] = React.useState(4);
+  const [value, setValue] = React.useState(book.rating);
   const bookHandler = (event) => {
     const id = event.currentTarget.id;
     setOpenBook({ open: true, book: book });
@@ -38,20 +35,7 @@ export default function Book({ book, setOpenBook }) {
             <Typography variant="body2" color="text.secondary">
               {book.category[0] && book.category[0].name}
             </Typography>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleAdd}
-              color="inherit"
-            >
-              <AddBoxIcon />
-            </IconButton>
-
             <Rating name="read-only" value={value} readOnly />
-
-
           </CardContent>
         </CardActionArea>
       </Card>

@@ -19,7 +19,7 @@ export default function Categories() {
     <div className='row justify-content-around'>
       {
         categories.map((cat)=>{
-          return <Category cat={cat} />
+          return <Category key={cat._id} cat={cat} />
         })
       }
     </div>

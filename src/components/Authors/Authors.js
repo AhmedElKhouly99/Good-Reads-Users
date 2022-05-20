@@ -89,8 +89,8 @@ export default function Authors() {
                     }
 
                 </div>
-                <div className='row justify-content-center'>
-                    <Stack className='col-4' spacing={2}>
+                <div className='row justify-content-around'>
+                    <Stack style={{marginLeft: '85%'}}  spacing={2}>
                         <Pagination count={numPages} color="primary" page={page} onChange={handleChange} />
                     </Stack>
                 </div>

@@ -105,7 +105,7 @@ export default function AuthorModal({ author }) {
                                     secondary={
                                         <React.Fragment>
                                             <Rating name="read-only" value={averageRate} readOnly />
-                                            {book.noOfRatings + " ratings"}
+                                            {book.noOfRatings?book.noOfRatings:0 + " ratings"}
                                         </React.Fragment>
                                     }
                                 />

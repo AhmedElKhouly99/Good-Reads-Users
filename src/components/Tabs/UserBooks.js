@@ -55,12 +55,14 @@ function UserBooks({ tab }) {
                                 <th>Status</th>
                                 <th>Rating</th>
                             </tr>
-                            {
-                                loadedbooks.map((val, key) => {
+                            {   (()=>{let counter = 0
+                                return loadedbooks.map((val, key) => {
                                     if (val.bookRate.status == tab || tab == 0)
-                                        return (
+                                        {
+                                            counter ++;
+                                            return (
                                             <tr key={key}>
-                                                <td>{key + 1}</td>
+                                                <td>{counter}</td>
                                                 <td >     <img className="activator m-auto" style={{ width: '250px', height: '250px' }} src={val.book.image ? val.book.image : "https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"} alt='no pic' /> </td>
                                                 <td>{val.book.name}</td>
                                                 <td><Rating name="read-only" value={val.book.rating} readOnly /></td>
@@ -89,8 +91,8 @@ function UserBooks({ tab }) {
                                                 <td><Rating name="read-only" value={val.bookRate.rating} readOnly />
                                                 </td>
                                             </tr>
-                                        );
-                                })
+                                        );}
+                                })})()
                             }
 
 
