@@ -58,13 +58,8 @@ export default function Books() {
     const [numPages, setNumPages] = useState(1);
     const [books, setBooks] = useState(undefined);
     const [page, setPage] = React.useState(1);
-<<<<<<< HEAD
-    const [openBook, setOpenBook] = useState({open:false, book:undefined});
-    const navigate = useNavigate();
-=======
     const [openBook, setOpenBook] = useState({ open: false, book: undefined });
 
->>>>>>> 5ef79c46244d6e95286af44b2663cba4f194b9a8
     const handleChange = (event, value) => {
         setPage(value);
     };
@@ -84,16 +79,7 @@ export default function Books() {
     }, [page])
 
 
-<<<<<<< HEAD
-    // }
-if(openBook.open){
-    // navigate({name:'/bookprofile', params: { book: openBook.book },})
-    return <NewBook  book={openBook.book}  />
-}
-    if (books)
-=======
     if (books && (openBook != undefined))
->>>>>>> 5ef79c46244d6e95286af44b2663cba4f194b9a8
         return (
             <>
                 <div className='row justify-content-around' style={{ marginTop: "5%" }}>
@@ -107,12 +93,7 @@ if(openBook.open){
                         <Pagination count={numPages} color="primary" page={page} onChange={handleChange} />
                     </Stack>
                 </div>
-<<<<<<< HEAD
-                
-                {/* <FullScreenBook  openBook={openBook}/> */}
-=======
                 <Bookmodal openBook={openBook} />
->>>>>>> 5ef79c46244d6e95286af44b2663cba4f194b9a8
             </>
         )
 

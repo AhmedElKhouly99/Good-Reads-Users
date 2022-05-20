@@ -50,7 +50,7 @@
 
 .myprofilebutton {
   height: 30px;
-  background-color: rgb(255, 255, 255);
+  background-color: transparent;
   /* border-radius: 30%; */
   margin-left: 70%;
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
