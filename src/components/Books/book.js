@@ -21,7 +21,7 @@ export default function Book({ book, setOpenBook }) {
 
   return (
     <>
-      <Card sx={{ width: 310, marginBottom: "2%" }} onClick={bookHandler} id={book._id} className="myBookCard">
+      <Card sx={{ width: 345, marginBottom: "2%" }} onClick={bookHandler} id={book._id} className="myBookCard">
         <CardActionArea>
           <CardMedia
             component="img"
