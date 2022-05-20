@@ -4,7 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Tablee from './Table';
+import UserBooks from '../Tabs/UserBooks'
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -15,7 +15,7 @@ function TabPanel(props) {
             hidden={value !== index}
             id={`vertical-tabpanel-${index}`}
             aria-labelledby={`vertical-tab-${index}`}
-            {...other}
+            {...other} style={{ width: '100%' }}
         >
             {value === index && (
                 <Box sx={{ p: 3 }}>
@@ -63,39 +63,22 @@ export default function VerticalTabs() {
                 <Tab label="Read" {...a11yProps(1)} />
                 <Tab label="Currently Reading" {...a11yProps(2)} />
                 <Tab label="Want To Read" {...a11yProps(3)} />
-                {/* <Tab label="Item Five" {...a11yProps(4)} />
-        <Tab label="Item Six" {...a11yProps(5)} />
-        <Tab label="Item Seven" {...a11yProps(6)} /> */}
+
             </Tabs>
-            {/* {
-                tabs.map((tab) => {
-                    <TabPanel value={value} index={count}>
-                        <tab />
-                    </TabPanel>
-                    count += 1;
-                })
-            } */}
+
             <TabPanel value={value} index={0}>
-                <Tablee />
+                <UserBooks tab={value} />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                <Tablee/>
+                <UserBooks tab={value} />
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <Tablee/>
+                <UserBooks tab={value} />
             </TabPanel>
             <TabPanel value={value} index={3}>
-                <Tablee/>
+                <UserBooks tab={value} />
             </TabPanel>
-            {/* <TabPanel value={value} index={4}>
-        Item Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Item Six
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Item Seven
-      </TabPanel> */}
+
         </Box>
     );
 }

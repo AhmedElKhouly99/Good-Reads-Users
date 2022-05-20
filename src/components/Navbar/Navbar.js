@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,12 +18,7 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchTabs from "./Search";
 import "../Navbar/Navbar.css";
-import Grid from "@mui/material/Grid";
-import CategoryIcon from "@mui/icons-material/Category";
 
-// import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-// import Brightness4Icon from '@mui/icons-material/Brightness4';
-// import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,7 +49,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -69,14 +63,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const pages = ["categories", "books", "authors"];
 const settings = ["Profile", "Home", "Logout"];
-// const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 const ResponsiveAppBar = ({ token, children }) => {
   const tok = token;
   const [searchStatus, setSearchStatus] = React.useState(false);
-  // const theme = useTheme();
-  // const colorMode = React.useContext(ColorModeContext);
 
-  console.log(token);
+
   const route = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -98,15 +89,9 @@ const ResponsiveAppBar = ({ token, children }) => {
   };
 
   const searchHandler = (event) => {
-    // handle search here
-    console.log(event.target.value);
     setSearchStatus(true);
-    alert(search);
   };
 
-  // if(searchStatus){
-  //     return (<SearchTabs></SearchTabs>);
-  // }
   if (tok) {
     return (
       <>
@@ -137,7 +122,6 @@ const ResponsiveAppBar = ({ token, children }) => {
                   textDecoration: "none",
                 }}
               >
-                {/* <img style={{ width: "20%" }} src='https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif' /> */}
               </Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -151,7 +135,7 @@ const ResponsiveAppBar = ({ token, children }) => {
                 >
                   <MenuIcon />
                 </IconButton>
-                {/* <img src='https://cdn-icons-png.flaticon.com/512/6423/6423887.png' class="iconImg"/> */}
+
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorElNav}
@@ -257,7 +241,6 @@ const ResponsiveAppBar = ({ token, children }) => {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {/* onClick={handleCloseUserMenu} */}
                   {settings.map((setting) => (
                     <MenuItem
                       key={setting}
@@ -268,8 +251,6 @@ const ResponsiveAppBar = ({ token, children }) => {
                           localStorage.removeItem("token");
                           sessionStorage.removeItem("token");
                           window.location.replace("http://localhost:3000/");
-                          // route(0)
-                          // route(`/Login`);
                         } else {
                           route(`/${setting}`);
                         }
@@ -291,7 +272,6 @@ const ResponsiveAppBar = ({ token, children }) => {
 
   return (
     <>
-      {/* class="myNav" */}
       <AppBar position="static" class="myNav">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
@@ -302,7 +282,6 @@ const ResponsiveAppBar = ({ token, children }) => {
               alt=""
             />
             <Typography
-              // variant="h6"
               noWrap
               component="a"
               href="/"
@@ -376,7 +355,6 @@ const ResponsiveAppBar = ({ token, children }) => {
               {pages.map((page) => (
                 <Button
                   key={page}
-                  // onClick={handleCloseNavMenu}
                   onClick={() => route(`/${page}`)}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >

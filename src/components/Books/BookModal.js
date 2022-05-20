@@ -1,20 +1,10 @@
 import * as React from 'react';
 import axios from 'axios';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
 import ListItemText from '@mui/material/ListItemText';
 import ListItem from '@mui/material/ListItem';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import CloseIcon from '@mui/icons-material/Close';
-import Slide from '@mui/material/Slide';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Rating from '@mui/material/Rating';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -24,80 +14,64 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import "./BookView.css";
 
 
-const editRating = (news,olds) => {
-            console.log(olds);
-            console.log(news);
-            axios.patch(`https://good-reads-server.herokuapp.com/user/books/`, news, {
-                headers: {
-                    token: sessionStorage.getItem("token"),
-                },
-                params: {
-                    oldStatus: olds.status? olds.status : 0,
-                    oldRating: olds.rating? olds.rating : 0
-                },
-            },
-            )
-                .then(function (response) {
-                    console.log(response.data);
-    
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        };
+const editRating = (news, olds) => {
+    console.log(olds);
+    console.log(news);
+    axios.patch(`https://good-reads-server.herokuapp.com/user/books/`, news, {
+        headers: {
+            token: sessionStorage.getItem("token"),
+        },
+        params: {
+            oldStatus: olds.status ? olds.status : 0,
+            oldRating: olds.rating ? olds.rating : 0
+        },
+    },
+    )
+        .then(function (response) {
+            console.log(response.data);
+
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+};
 
 
 
 
 
 export default function BookModal({ book, bookStatus }) {
-     const [value, setValue] = React.useState(0);
-     const [status, setStatus] = React.useState(0);
-     const [open, setOpen] = React.useState(false);
-     const [oldStatus, setOldStatus] = React.useState(bookStatus)
-     const date = new Date(book.author[0].dateOfBirth)
-     const rate = book.rating / book.noOfRatings?book.rating / book.noOfRatings:0;
-    // let value = bookStatus?.rating?bookStatus.rating:0;
-    // let status = bookStatus?.status?bookStatus.status:0;
-    // let newStatus = {}
-let newbookStatus = {};
+    const [value, setValue] = React.useState(0);
+    const [status, setStatus] = React.useState(0);
+    const [open, setOpen] = React.useState(false);
+    const [oldStatus, setOldStatus] = React.useState(bookStatus)
+    const date = new Date(book.author[0].dateOfBirth)
+    const rate = book.rating / book.noOfRatings ? book.rating / book.noOfRatings : 0;
+
+    let newbookStatus = {};
     React.useEffect(() => {
-        // if (!book == undefined) {
-            axios.get(`https://good-reads-server.herokuapp.com/user/rate/${book._id}`, {
-                headers: {
-                    token: sessionStorage.getItem("token"),
-                }
-            },
-            )
+        axios.get(`https://good-reads-server.herokuapp.com/user/rate/${book._id}`, {
+            headers: {
+                token: sessionStorage.getItem("token"),
+            }
+        },
+        )
             .then(function (response) {
-                console.log(response.data);
-                // setBookStatus(response.data);
-                // flag = true;
                 newbookStatus = response.data;
-                setOldStatus(response.data !== ""?response.data:{rating:0, status:0})
-                setValue(newbookStatus.rating?newbookStatus.rating:0)
-                setStatus(newbookStatus.status?newbookStatus.status:0)
+                setOldStatus(response.data !== "" ? response.data : { rating: 0, status: 0 })
+                setValue(newbookStatus.rating ? newbookStatus.rating : 0)
+                setStatus(newbookStatus.status ? newbookStatus.status : 0)
             })
             .catch(function (error) {
                 console.log(error);
             })
-        // }
     }, [value]);
 
 
-
-
-console.log(value);
-console.log(status);
-console.log(book);
-     const handleChange = (event) => {
-        console.log(event.target.value);
+    const handleChange = (event) => {
         newbookStatus.status = event.target.value;
-        editRating({status:event.target.value, rating: value,Bid:oldStatus._id?oldStatus._id:book._id}, oldStatus);
-        // console.log(newbookStatus);
-        // setOldStatus({...oldStatus}, )
+        editRating({ status: event.target.value, rating: value, Bid: oldStatus._id ? oldStatus._id : book._id }, oldStatus);
         setStatus(event.target.value);
-        // status = event.target.value
     };
 
     const handleClose = () => {
@@ -109,15 +83,12 @@ console.log(book);
     };
     return (
         <List
-            // className='row justify-content-around'
             sx={{
                 width: '100%',
-                // maxWidth: 360,
                 bgcolor: 'beige',
             }}
         >
             <ListItem className='row justify-content-around'>
-                {/* <ListItemText primary="Photo" /> */}
                 <img src={book.image} style={{ width: '20%' }} />
             </ListItem>
             <div class="myItem">
@@ -129,7 +100,6 @@ console.log(book);
                         display="block"
                         variant="caption"
                         fontSize={14}
-                    // secondary="Authors"
                     >
                         Authors :
                     </Typography>
@@ -176,12 +146,10 @@ console.log(book);
                     <Rating
                         name="simple-controlled"
                         value={value}
-                        onChange={(event, newValue) => {
+                        onChange={(_event, newValue) => {
                             newbookStatus.status = newValue;
-                            console.log(newbookStatus);
-                            editRating({status:status, rating: newValue,Bid:oldStatus._id?oldStatus._id:book._id}, oldStatus)
+                            editRating({ status: status, rating: newValue, Bid: oldStatus._id ? oldStatus._id : book._id }, oldStatus)
                             setValue(newValue);
-                            // value = newValue;
                         }}
                     />
                 </ListItem>
@@ -197,7 +165,6 @@ console.log(book);
                         display="block"
                         variant="caption"
                         fontSize={14}
-                    // secondary="Authors"
                     >
                         Add Book Status:
                     </Typography>
@@ -212,7 +179,7 @@ console.log(book);
                             open={open}
                             onClose={handleClose}
                             onOpen={handleOpen}
-                            value={status?status:0}
+                            value={status ? status : 0}
                             label="Status"
                             onChange={handleChange}
                         >

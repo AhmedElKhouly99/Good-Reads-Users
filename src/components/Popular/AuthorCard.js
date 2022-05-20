@@ -1,32 +1,29 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-// import CatCard from './CatCard';
+
 
 export default function AuthorCard({ author, isFirst }) {
-    // const [auth, setCat] = useState(book)
     if (isFirst) {
         return (
-            <div className="carousel-item active"    style={{ width: "100%", marginBottom:'2%' }}>
-                <Card sx={{ maxWidth: 345 }}>
+            <div className="carousel-item active" style={{ width: "100%", marginBottom: '2%' }}>
+                <h2 style={{textAlign: 'center'}}>Popular Authors</h2>
+                <Card sx={{}}>
                     <CardActionArea>
                         <CardMedia
                             component="img"
-                            // height="140"
-                            image= {author.image?author.image:"https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"}
+                            height="350"
+                            image={author.image ? author.image : "https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"}
                             alt="green iguana"
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
-                            {author.firstName+" "+author.lastName}
+                                {author.firstName + " " + author.lastName}
                             </Typography>
-                            {/* <Typography variant="body2" color="text.secondary">
-                                Lizards are a widespread group of squamate reptiles, with over 6,000
-                                species, ranging across all continents except Antarctica
-                            </Typography> */}
+
                         </CardContent>
                     </CardActionArea>
                 </Card>
@@ -35,23 +32,21 @@ export default function AuthorCard({ author, isFirst }) {
     }
 
     return (
-        <div className="carousel-item"  style={{ width: "100%", marginBottom:'2%' }}>
-            <Card sx={{ maxWidth: 345 }}>
+        <div className="carousel-item" style={{ width: "100%", marginBottom: '2%' }}>
+            <h2 style={{textAlign: 'center'}}>Popular Authors</h2>
+            <Card sx={{}}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
-                        // height="140"
-                        image= {author.image?author.image:"https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"}
+                        height="350"
+                        image={author.image ? author.image : "https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"}
                         alt="green iguana"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            {author.firstName+" "+author.lastName}
+                            {author.firstName + " " + author.lastName}
                         </Typography>
-                        {/* <Typography variant="body2" color="text.secondary">
-                            Lizards are a widespread group of squamate reptiles, with over 6,000
-                            species, ranging across all continents except Antarctica
-                        </Typography> */}
+
                     </CardContent>
                 </CardActionArea>
             </Card>

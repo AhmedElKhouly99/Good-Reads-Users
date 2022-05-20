@@ -8,7 +8,6 @@ export default function Categories() {
     useEffect(() => {
         axios.get("https://good-reads-server.herokuapp.com/user/categories")
             .then(function (response) {
-                console.log(response.data);
                 setCategories(response.data)
             })
             .catch(function (error) {

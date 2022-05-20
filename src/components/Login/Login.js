@@ -14,33 +14,27 @@ export default function Login({ updateTokenHandler }) {
     });
 
     const handleLogin = (event) => {
-        console.log(user);
         event.preventDefault();
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             // event.preventDefault();
-            // document.getElementById('validate').innerHTML = form.validationMessage;
         } else {
             console.log(user);
             console.log("line 20");
             axios.post("https://good-reads-server.herokuapp.com/user/login", user)
                 .then(function (response) {
-                    console.log(response.data);
                     updateTokenHandler(response.data, document.getElementById('keepMe').checked);
                     navigate('/');
                 })
                 .catch(function (error) {
                     document.getElementById('validate').innerHTML = `<li>${error.response.data}</li>`;
-                    //   document.getElementById('login').reset()
                     console.log(error);
                 });
         }
-        // setValidated(true);
     };
 
     return (
         <div className='row justify-content-center login-temp'>
-            {/* <img  className='logo' src={'https://images-na.ssl-images-amazon.com/images/G/01/goodreads/Goodreads-Logo-AuthPortal._CB646706455_.png'} /> */}
             <h2 className='my-3 loginTxt'>Login</h2>
             <form className='col-8' onSubmit={e => handleLogin(e)}>
                 <div className='form-group my-3'>

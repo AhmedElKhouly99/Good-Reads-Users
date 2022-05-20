@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import PopularAuthors from '../Popular/PopularAuthors';
 import PopularCategories from '../Popular/PopularCategories';
 import PopularBooks from '../Popular/PopularBooks';
@@ -15,12 +14,12 @@ export default function Home({ token }) {
                 <div className='row justify-content-center' style={{ marginTop: "10%" }}>
                     <PopularAuthors />
                     <PopularBooks />
-                    {/* <PopularCategories /> */}
+                    <PopularCategories />
                 </div>
                 <div className='row justify-content-center' style={{ marginTop: "10%" }}>
                     {/* <PopularAuthors /> */}
                     {/* <PopularBooks /> */}
-                    <PopularCategories />
+                    {/* <PopularCategories /> */}
                 </div>
             </>
 

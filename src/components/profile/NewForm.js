@@ -1,12 +1,8 @@
 import classes from "./NewForm.module.css";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
-// import TextField from "@mui/material/TextField";
-// import { Label } from "@mui/icons-material";
-// import FileBase64 from "react-file-base64";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import Moment from "moment";
-// import { format } from "date-fns";
+
 
 function NewForm() {
   const [sFirstName, setFirstName] = useState(true);
@@ -34,7 +30,6 @@ function NewForm() {
     const enteredlname = lnameRef.current.value;
     const enteredemail = emailRef.current.value;
     const enteredpassword = passwordRef.current.value;
-    // const enteredconfirmpass = confirmpassRef.current.value;
     const entereddate = dateRef.current.value;
     const enteredcountry = countryRef.current.value;
     const enteredimage = imageRef.current.value;
@@ -55,7 +50,6 @@ function NewForm() {
         },
       })
       .then(function (response) {
-        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -69,14 +63,7 @@ function NewForm() {
         },
       })
       .then(function (response) {
-        console.log(response.data);
         setUser(response.data);
-        // console.log(format(dateValue, "yyyy-mm-dd"));
-        // formatDate = user.date_of_birth.Moment().format("DD-MM-YYYY");
-        // console.log(formatDate);
-        // let userData = response.data.user;
-        // setuser(response.data.data)
-        // setNumPages(response.data.pages)
       })
       .catch(function (error) {
         console.log(error);
@@ -205,33 +192,7 @@ function NewForm() {
             ></img>
           </button>
         </div>
-        {/* <div className={classes.control}>
-          <label className={classes.myprofilelabel} htmlFor="confirmpassword">
-            Confirm Password
-          </label>
-          <input
-            type="text"
-            required
-            id="confirmpassword"
-            ref={confirmpassRef}
-            disabled={sConfirmPassword}
-            className={classes.myprofileinput}
-            // defaultValue={user.password}
-          />
-          <button
-            type="button"
-            className={classes.myprofilebutton}
-            id="confirmpassword"
-            onClick={() => {
-              setConfirmPassword(false);
-            }}
-          >
-            <img
-              className={classes.myProfileIcon}
-              src="https://cdn-icons.flaticon.com/png/512/738/premium/738880.png?token=exp=1652713213~hmac=288a792c3a9a865c6305d6d8349c070a"
-            ></img>
-          </button>
-        </div> */}
+
         <div className={classes.control}>
           <label className={classes.myprofilelabel} htmlFor="birth">
             Date Of Birth
@@ -244,7 +205,6 @@ function NewForm() {
             disabled={sDOB}
             className={classes.myprofileinput}
             defaultValue="2000-01-01"
-            // defaultValue={format(user.date_of_birth, "yyyy-mm-dd")}
           />
           <button
             type="button"
@@ -317,26 +277,8 @@ function NewForm() {
           </button>
         </div>
 
-        {/* <div className="chooseImage">
-          <Label>Image </Label>
-          <div className="input-group">
-            <div className="custom-file">
-              <FileBase64
-                type="file"
-                multiple={false}
-                onDone={({ base64 }) => {
-                  // setImage(base64);
-                }}
-              />{" "}
-            </div>
-          </div>
-        </div> */}
-
-        {/* //.......................// */}
         <div className={classes.actions}>
-          {/* <button id="update" className={classes.registerBtn}>
-            <p className={classes.registerTxt}>Update</p>
-          </button> */}
+
           <input
             type="submit"
             class="btn btn-outline-primary button-28 my-3 registerBtn"
