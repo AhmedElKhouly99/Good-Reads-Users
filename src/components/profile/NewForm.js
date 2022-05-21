@@ -123,8 +123,8 @@ function NewForm() {
           />
           <button
             onClick={() => {
-              console.log(user);
-              console.log(typeof user.date_of_birth);
+              // console.log(user);
+              // console.log(typeof user.date_of_birth);
               setFirstName(false);
             }}
             type="button"
