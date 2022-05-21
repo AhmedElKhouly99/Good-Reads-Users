@@ -16,7 +16,7 @@ export default function PopularAuthors() {
     }, [])
     if (popAuthors)
         return (
-            <div id="carouselExampleFade3" className="carousel slide carousel-fade col-3" data-bs-ride="carousel" style={{ width: "30%" }}>
+            <div id="carouselExampleFade3" className="carousel slide carousel-fade col-3 " data-bs-ride="carousel" style={{ width: "30%" }}>
 
                 <div class="carousel-indicators">
                     <button style={{ backgroundColor: "black" }} type="button" data-bs-target="#carouselExampleFade3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

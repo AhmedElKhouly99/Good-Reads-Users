@@ -18,7 +18,7 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchTabs from "./Search";
 import "../Navbar/Navbar.css";
-
+// import usr from '../../../public/usr.png';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -220,8 +220,8 @@ const ResponsiveAppBar = ({ token, children }) => {
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
+                      alt="User"
+                      src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                     />
                   </IconButton>
                 </Tooltip>

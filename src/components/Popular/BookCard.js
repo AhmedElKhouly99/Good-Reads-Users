@@ -4,14 +4,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-
+import './popular.css';
 export default function BookCard({ book, isFirst }) {
     const [category, setCat] = useState(book)
     if (isFirst) {
         return (
-            <div className="carousel-item active"   style={{ width: "100%", marginBottom:'2%' }}>
+            <div className="carousel-item active myPopularCard txtPlace"   style={{ width: "100%", marginBottom:'2%' }}>
                 <h2 style={{textAlign: 'center'}}>Popular Books</h2>
-                <Card sx={{  }}>
+                <Card sx={{  }} className="myPopularCard">
                     <CardActionArea>
                         <CardMedia
                             component="img"
