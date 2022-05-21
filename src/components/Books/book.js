@@ -23,7 +23,7 @@ export default function Book({ book, setOpenBook }) {
 
   return (
     <>
-      <Card sx={{ width: 345, marginBottom: "2%" }} onClick={bookHandler} id={book._id} className="myBookCard">
+      <Card sx={{ width: 345, marginBottom: "2%", paddingTop:'1%' }} onClick={bookHandler} id={book._id} className="myBookCard">
         <CardActionArea>
           <CardMedia
             component="img"
@@ -31,8 +31,8 @@ export default function Book({ book, setOpenBook }) {
             image={book.image ? book.image : "https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"}
             alt="green iguana"
           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+          <CardContent className='cardPart'>
+            <Typography gutterBottom variant="h6" component="div">
               {book.name}
             </Typography>
             <Typography variant="body2" color="text.secondary">

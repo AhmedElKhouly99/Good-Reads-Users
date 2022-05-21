@@ -12,3 +12,7 @@
     border-style: solid solid solid solid;
     border-color: firebrick;
 }
+.cardPart:hover{
+    background-color: blueviolet;
+    color: aliceblue;
+}

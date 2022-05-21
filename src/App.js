@@ -15,7 +15,7 @@ import SignUp from "./components/Signup/SignUp";
 import FullScreenDialog from "./components/Books/BookView";
 import NewForm from "./components/profile/NewForm";
 
-import NewBook from "./components/Books/newBook"
+import NewBook from "./components/Books/newBook";
 import Footer from "./components/footer/footer";
 
 const darkTheme = createTheme({
@@ -65,14 +65,13 @@ function App() {
                   </PrivateRoute>
                 }
               />
-               <Route
+              <Route
                 path="/bookprofile"
                 element={
                   <PrivateRoute>
                     <NewBook />
                   </PrivateRoute>
                 }
-             
               />
               <Route
                 path="/authors"
@@ -90,10 +89,7 @@ function App() {
                   </PrivateRoute>
                 }
               />
-              <Route 
-                path="/Logout" 
-                element={<Login />} 
-              />
+              <Route path="/Logout" element={<Login />} />
             </Routes>
           </div>
         </ResponsiveAppBar>
@@ -107,11 +103,11 @@ function App() {
           />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
 }
-// npm install && serve -s build
+// "npm install && npm install --save serve && serve -s build"
 export default App;
 // react-scripts start

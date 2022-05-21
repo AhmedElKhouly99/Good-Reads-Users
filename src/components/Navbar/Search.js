@@ -1,15 +1,15 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react'
-import axios from 'axios';
-import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import CategoryIcon from '@mui/icons-material/Category';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import Book from '../Books/book';
-import Category from '../Categories/Category';
-import Author from '../Authors/Author';
+import * as React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Box from "@mui/material/Box";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import CategoryIcon from "@mui/icons-material/Category";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import Book from "../Books/book";
+import Category from "../Categories/Category";
+import Author from "../Authors/Author";
 
 export default function SearchTabs({ search }) {
   const [value, setValue] = React.useState(0);
@@ -21,7 +21,7 @@ export default function SearchTabs({ search }) {
   };
 
   useEffect(() => {
-    let uri = ""
+    let uri = "";
     switch (value) {
       case 0:
         uri = "https://good-reads-server.herokuapp.com/users/books";
@@ -37,57 +37,60 @@ export default function SearchTabs({ search }) {
         break;
     }
 
-    axios.get(uri, {
-      params: {
-        name: search
-      }
-    })
+    axios
+      .get(uri, {
+        params: {
+          name: search,
+        },
+      })
       .then(function (response) {
-        setItems(response.data)
+        setItems(response.data);
       })
       .catch(function (error) {
         console.log(error);
-      })
-
+      });
   }, [value]);
 
-  if (items)
-    {
-      console.log(items);
-      return (
+  if (items) {
+    console.log(items);
+    return (
       <>
-        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-          <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example" centered>
+        <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="icon label tabs example"
+            centered
+          >
             <Tab icon={<MenuBookIcon />} label="BOOKS" />
             <Tab icon={<CategoryIcon />} label="CATEGORIES" />
             <Tab icon={<AccountBoxIcon />} label="AUTHORS" />
           </Tabs>
         </Box>
-        <div className='row justify-content-around'>
-          {
-              (()=>{
-                switch (value) {
-                  case 0:
-                    return items.map((book) => { 
-                      return (<Book book={book} />) 
-                    })
-                    break;
-                  case 1:
-                    return items.map((cat) => { 
-                      return (<Category cat={cat} />) 
-                    })
-                    break;
-                  case 2:
-                    return items.map((author) => { 
-                      return (<Author author={author} />) 
-                    })  
-                    break;
-                  default:
-                    break;
-                }
-              })()
-          }
+        <div className="row justify-content-around" style={{marginTop: '5%'}}>
+          {(() => {
+            switch (value) {
+              case 0:
+                return items.map((book) => {
+                  return <Book book={book} />;
+                });
+                break;
+              case 1:
+                return items.map((cat) => {
+                  return <Category cat={cat} />;
+                });
+                break;
+              case 2:
+                return items.map((author) => {
+                  return <Author author={author} />;
+                });
+                break;
+              default:
+                break;
+            }
+          })()}
         </div>
       </>
-    );}
+    );
+  }
 }
