@@ -67,7 +67,6 @@ const ResponsiveAppBar = ({ token, children }) => {
   const tok = token;
   const [searchStatus, setSearchStatus] = React.useState(false);
 
-
   const route = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -121,8 +120,7 @@ const ResponsiveAppBar = ({ token, children }) => {
                   color: "inherit",
                   textDecoration: "none",
                 }}
-              >
-              </Typography>
+              ></Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                 <IconButton

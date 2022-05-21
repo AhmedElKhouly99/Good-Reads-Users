@@ -18,9 +18,9 @@ function NewForm() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const dateRef = useRef();
-  const countryRef = useRef(); 
+  const countryRef = useRef();
   const [user, setUser] = useState({});
-  const [img,setImg] = useState('')
+  const [img, setImg] = useState("");
 
   function submitHandler(event) {
     event.preventDefault();
@@ -31,7 +31,7 @@ function NewForm() {
     const enteredpassword = passwordRef.current.value;
     const entereddate = dateRef.current.value;
     const enteredcountry = countryRef.current.value;
-   
+
     const newData = {
       firstName: enteredFname,
       lastName: enteredlname,
@@ -51,14 +51,12 @@ function NewForm() {
         },
       })
       .then(function (response) {
-   
-        setFirstName(true)
-        setLastName(true)
-        setCountry(true)
-        setEmail(true)
-        setPassword(true)
-        setDOB(true)
-        
+        setFirstName(true);
+        setLastName(true);
+        setCountry(true);
+        setEmail(true);
+        setPassword(true);
+        setDOB(true);
       })
       .catch(function (error) {
         console.log(error);
@@ -73,8 +71,6 @@ function NewForm() {
       })
       .then(function (response) {
         setUser(response.data);
-
-        
       })
       .catch(function (error) {
         console.log(error);
@@ -103,7 +99,11 @@ function NewForm() {
       <div className={classes.myProfileDiv}>
         <img
           className={classes.myprofileimg}
-          src={user.image?user.image:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Goodreads_logo.svg/1280px-Goodreads_logo.svg.png"}
+          src={
+            user.image
+              ? user.image
+              : "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Goodreads_logo.svg/1280px-Goodreads_logo.svg.png"
+          }
           alt="Logo"
         ></img>
       </div>
@@ -281,18 +281,15 @@ function NewForm() {
           </button>
         </div>
         <div className={classes.control}>
-                <div   className={classes.myprofileinput}>
-                  <FileBase64
-                
-                    type="file"
-                    multiple={false}
-                    onDone={({ base64 }) => {
-                      setImg(base64);
-                    }}
-                  />{" "}
-               
-              </div>
-    
+          <div className={classes.myprofileinput}>
+            <FileBase64
+              type="file"
+              multiple={false}
+              onDone={({ base64 }) => {
+                setImg(base64);
+              }}
+            />{" "}
+          </div>
         </div>
 
         <div className={classes.actions}>
