@@ -81,22 +81,7 @@ function NewForm() {
       });
   }, []);
 
-  // console.log(user.date_of_birth);
-  // console.log(user);
-  // let myDate =
-  //   ("0" + (date.getMonth() + 1)).slice(-2) +
-  //   "/" +
-  //   ("0" + date.getDate()).slice(-2) +
-  //   "/" +
-  //   date.getFullYear();
-  // console.log(typeof myDate);
-
-  //...........................//
-  // let curr = new Date(user.date_of_birth);
-  // console.log(curr);
-  // let date = curr.toISOString();
-  // curr.toJSON().slice(0, 10);
-  // console.log(curr);
+  
 
   return (
     <div>
@@ -111,6 +96,7 @@ function NewForm() {
         <div className={classes.control}>
           <label className={classes.myprofilelabel} htmlFor="first">
             First Name
+
           </label>
           <input
             type="text"

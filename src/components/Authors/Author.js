@@ -7,7 +7,7 @@ import { CardActionArea } from '@mui/material';
 import "./author.css"
 
 export default function Author( { author, setOpenAuthor } ) {
-
+  const date = new Date(author.dateOfBirth)
   const authorHandler = (event) => {
     setOpenAuthor({open:true, author: author});
   }
@@ -26,7 +26,7 @@ export default function Author( { author, setOpenAuthor } ) {
             {author.fullname ? author.fullname : author.firstName + " " + author.lastName}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Date of Birth : {author.dateOfBirth}
+            Date of Birth :{`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
           </Typography>
         </CardContent>
       </CardActionArea>
