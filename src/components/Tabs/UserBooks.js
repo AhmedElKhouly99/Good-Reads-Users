@@ -105,7 +105,7 @@ function UserBooks({ tab }) {
                         <td>
                           <Rating
                             name="read-only"
-                            value={val.book.rating}
+                            value={(val.book.rating/val.book.noOfRatings)?(val.book.rating/val.book.noOfRatings):0}
                             readOnly
                           />
                         </td>
