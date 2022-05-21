@@ -1,0 +1,18 @@
+.myPopularCard{
+    text-align: center;
+ 
+    /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); */
+    /* border: 1px solid; */
+  /* padding: 10px; */
+  /* box-shadow: 10px 10px blueviolet; */
+}
+.myPopularCard:hover{
+    background-color: firebrick;
+    color: white;
+}
+.txtPlace{
+    border-width: 5px;
+    border-style: none none double none;
+    border-color: firebrick;
+    border-radius: 5px;
+}
