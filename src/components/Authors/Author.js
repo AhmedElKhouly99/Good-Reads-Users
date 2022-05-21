@@ -11,6 +11,7 @@ export default function Author( { author, setOpenAuthor } ) {
   const authorHandler = (event) => {
     setOpenAuthor({open:true, author: author});
   }
+  const autherDOB = new Date(author.dateOfBirth)
   
   return (
     <Card key={author._id} sx={{ width: 345, marginBottom: "2%" }} onClick={authorHandler} className="myAuthorCard">
@@ -26,7 +27,7 @@ export default function Author( { author, setOpenAuthor } ) {
             {author.fullname ? author.fullname : author.firstName + " " + author.lastName}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Date of Birth : {author.dateOfBirth}
+            Date of Birth : {`${autherDOB.getDate()}/${autherDOB.getMonth() + 1}/${autherDOB.getFullYear()}`}
           </Typography>
         </CardContent>
       </CardActionArea>

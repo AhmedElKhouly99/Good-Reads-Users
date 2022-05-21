@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FileBase64 from "react-file-base64";
-import { toDate } from "date-fns";
+
 
 function NewForm() {
   const [sFirstName, setFirstName] = useState(true);
@@ -20,7 +20,8 @@ function NewForm() {
   const dateRef = useRef();
   const countryRef = useRef(); 
   const [user, setUser] = useState({});
-  const [img,setImg] = useState('')
+  const [img,setImg] = useState('');
+  const [userDOB, setUserDOB] = useState(new Date());
 
   function submitHandler(event) {
     event.preventDefault();
@@ -74,6 +75,7 @@ function NewForm() {
       .then(function (response) {
         setUser(response.data);
 
+        setUserDOB(new Date(response.data.date_of_birth));
         
       })
       .catch(function (error) {
@@ -81,23 +83,8 @@ function NewForm() {
       });
   }, []);
 
-  // console.log(user.date_of_birth);
-  // console.log(user);
-  // let myDate =
-  //   ("0" + (date.getMonth() + 1)).slice(-2) +
-  //   "/" +
-  //   ("0" + date.getDate()).slice(-2) +
-  //   "/" +
-  //   date.getFullYear();
-  // console.log(typeof myDate);
-
-  //...........................//
-  // let curr = new Date(user.date_of_birth);
-  // console.log(curr);
-  // let date = curr.toISOString();
-  // curr.toJSON().slice(0, 10);
-  // console.log(curr);
-
+  let myDate = userDOB.getFullYear()+ "-" + ("0" + (userDOB.getMonth() + 1)).slice(-2) + "-" + ("0" + userDOB.getDate()).slice(-2)
+    
   return (
     <div>
       <div className={classes.myProfileDiv}>
@@ -123,8 +110,6 @@ function NewForm() {
           />
           <button
             onClick={() => {
-              // console.log(user);
-              // console.log(typeof user.date_of_birth);
               setFirstName(false);
             }}
             type="button"
@@ -235,13 +220,14 @@ function NewForm() {
             ref={dateRef}
             disabled={sDOB}
             className={classes.myprofileinput}
-            defaultValue="2000-01-01"
+            defaultValue= {myDate}
           />
           <button
             type="button"
             className={classes.myprofilebutton}
             id="birth"
             onClick={() => {
+              console.log(userDOB);
               setDOB(false);
             }}
           >
@@ -283,7 +269,6 @@ function NewForm() {
         <div className={classes.control}>
                 <div   className={classes.myprofileinput}>
                   <FileBase64
-                
                     type="file"
                     multiple={false}
                     onDone={({ base64 }) => {
