@@ -2,6 +2,7 @@ import classes from "./NewForm.module.css";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import FileBase64 from "react-file-base64";
 import { toDate } from "date-fns";
 
 function NewForm() {
@@ -9,19 +10,17 @@ function NewForm() {
   const [sLastName, setLastName] = useState(true);
   const [sEmail, setEmail] = useState(true);
   const [sPassword, setPassword] = useState(true);
-  const [sConfirmPassword, setConfirmPassword] = useState(true);
+
   const [sDOB, setDOB] = useState(true);
   const [sCountry, setCountry] = useState(true);
-  const [sImage, setImage] = useState(true);
   const fnameRef = useRef();
   const lnameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const confirmpassRef = useRef();
   const dateRef = useRef();
   const countryRef = useRef();
-  const imageRef = useRef();
   const [user, setUser] = useState({});
+  const [img, setImg] = useState("");
 
   function submitHandler(event) {
     event.preventDefault();
@@ -32,7 +31,7 @@ function NewForm() {
     const enteredpassword = passwordRef.current.value;
     const entereddate = dateRef.current.value;
     const enteredcountry = countryRef.current.value;
-    const enteredimage = imageRef.current.value;
+
     const newData = {
       firstName: enteredFname,
       lastName: enteredlname,
@@ -40,16 +39,25 @@ function NewForm() {
       password: enteredpassword === "" ? undefined : enteredpassword,
       date_of_birth: entereddate,
       country: enteredcountry,
-      image: enteredimage,
+      image: img,
     };
-    console.log(enteredpassword);
+    if (newData.image === "") {
+      delete newData.image;
+    }
     axios
       .patch("https://good-reads-server.herokuapp.com/user", newData, {
         headers: {
           token: sessionStorage.getItem("token"),
         },
       })
-      .then(function (response) {})
+      .then(function (response) {
+        setFirstName(true);
+        setLastName(true);
+        setCountry(true);
+        setEmail(true);
+        setPassword(true);
+        setDOB(true);
+      })
       .catch(function (error) {
         console.log(error);
       });
@@ -63,12 +71,6 @@ function NewForm() {
       })
       .then(function (response) {
         setUser(response.data);
-        // console.log(typeof user.date_of_birth);
-        // console.log(user.date_of_birth);
-
-        // console.log(response.data);
-        // console.log("*******************");
-        // console.log(user);
       })
       .catch(function (error) {
         console.log(error);
@@ -97,7 +99,11 @@ function NewForm() {
       <div className={classes.myProfileDiv}>
         <img
           className={classes.myprofileimg}
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Goodreads_logo.svg/1280px-Goodreads_logo.svg.png"
+          src={
+            user.image
+              ? user.image
+              : "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Goodreads_logo.svg/1280px-Goodreads_logo.svg.png"
+          }
           alt="Logo"
         ></img>
       </div>
@@ -117,8 +123,8 @@ function NewForm() {
           />
           <button
             onClick={() => {
-              console.log(user);
-              console.log(typeof user.date_of_birth);
+              // console.log(user);
+              // console.log(typeof user.date_of_birth);
               setFirstName(false);
             }}
             type="button"
@@ -275,39 +281,21 @@ function NewForm() {
           </button>
         </div>
         <div className={classes.control}>
-          <label className={classes.myprofilelabel} htmlFor="image">
-            Image
-          </label>
-          <input
-            type="string"
-            id="image"
-            ref={imageRef}
-            disabled={sImage}
-            className={classes.myprofileinput}
-            defaultValue={user.image}
-          />
-          <button
-            type="button"
-            className={classes.myprofilebutton}
-            id="image"
-            onClick={() => {
-              setImage(false);
-            }}
-          >
-            <img
-              className={classes.myProfileIcon}
-              src="edi.png"
-              alt="Edit"
-            ></img>
-          </button>
+          <div className={classes.myprofileinput}>
+            <FileBase64
+              type="file"
+              multiple={false}
+              onDone={({ base64 }) => {
+                setImg(base64);
+              }}
+            />{" "}
+          </div>
         </div>
 
         <div className={classes.actions}>
-          <input
-            type="submit"
-            class="btn btn-primary button-28 my-3 registerBtn"
-            value="Update"
-          ></input>
+          <button id="update" className={classes.myprofileupdatebutton}>
+            Update
+          </button>
         </div>
       </form>
     </div>

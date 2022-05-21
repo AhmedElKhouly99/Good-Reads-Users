@@ -18,7 +18,7 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchTabs from "./Search";
 import "../Navbar/Navbar.css";
-
+// import usr from '../../../public/usr.png';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -66,7 +66,6 @@ const settings = ["Profile", "Home", "Logout"];
 const ResponsiveAppBar = ({ token, children }) => {
   const tok = token;
   const [searchStatus, setSearchStatus] = React.useState(false);
-
 
   const route = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -121,8 +120,7 @@ const ResponsiveAppBar = ({ token, children }) => {
                   color: "inherit",
                   textDecoration: "none",
                 }}
-              >
-              </Typography>
+              ></Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                 <IconButton
@@ -220,8 +218,8 @@ const ResponsiveAppBar = ({ token, children }) => {
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
+                      alt="User"
+                      src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                     />
                   </IconButton>
                 </Tooltip>

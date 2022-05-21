@@ -14,6 +14,8 @@ import PrivateRoute from "./components/PrivateRoutes/PrivateRoute";
 import SignUp from "./components/Signup/SignUp";
 import FullScreenDialog from "./components/Books/BookView";
 import NewForm from "./components/profile/NewForm";
+
+import NewBook from "./components/Books/newBook";
 import Footer from "./components/footer/footer";
 
 const darkTheme = createTheme({
@@ -64,6 +66,14 @@ function App() {
                 }
               />
               <Route
+                path="/bookprofile"
+                element={
+                  <PrivateRoute>
+                    <NewBook />
+                  </PrivateRoute>
+                }
+              />
+              <Route
                 path="/authors"
                 element={
                   <PrivateRoute>
@@ -79,10 +89,7 @@ function App() {
                   </PrivateRoute>
                 }
               />
-              <Route 
-                path="/Logout" 
-                element={<Login />} 
-              />
+              <Route path="/Logout" element={<Login />} />
             </Routes>
           </div>
         </ResponsiveAppBar>
@@ -96,7 +103,7 @@ function App() {
           />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );

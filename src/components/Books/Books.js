@@ -8,8 +8,8 @@ import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import Book from './book'
 import FullScreenBook from './BookView';
-
-
+import NewBook from './newBook'
+import { Link, useNavigate } from 'react-router-dom'
 const data = [
     {
 

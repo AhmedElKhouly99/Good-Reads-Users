@@ -21,7 +21,7 @@ export default function Author( { author, setOpenAuthor } ) {
           image={author.image ? author.image : "https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"}
           alt="green iguana"
         />
-        <CardContent>
+        <CardContent className='cardPart'>
           <Typography gutterBottom variant="h5" component="div">
             {author.fullname ? author.fullname : author.firstName + " " + author.lastName}
           </Typography>

@@ -3,13 +3,14 @@
 .myCategoryCard{
     font-family: 'Lobster', cursive;
     text-align: center;
-    border-width: 2px;
+    border-width: 3px;
     border-style: none solid solid none;
     border-color: blueviolet;
     width: 20%;
 }
 .myCategoryCard:hover{
-    background-color: lightgrey;
+    background-color: firebrick;
+    color: whitesmoke;
     cursor: pointer;
     width: 30%;
 }
