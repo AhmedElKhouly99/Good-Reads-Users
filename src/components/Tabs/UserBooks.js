@@ -9,6 +9,36 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
+
+
+const editRating = (news, olds) => {
+  console.log(olds);
+  console.log(news);
+  axios.patch(`https://good-reads-server.herokuapp.com/user/books/`, news, {
+    headers: {
+      token: sessionStorage.getItem("token"),
+    },
+    params: {
+      oldStatus: olds.status ? olds.status : 0,
+      oldRating: olds.rating ? olds.rating : 0
+    },
+  },
+  )
+    .then(function (response) {
+      console.log(response.data);
+
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+};
+
+
+
+
+
+
+
 function UserBooks({ tab }) {
   const [loadedbooks, setLoadedbooks] = useState([]);
   const [, setActivated] = useState(1);
@@ -34,6 +64,7 @@ function UserBooks({ tab }) {
         console.log(error);
       });
   }, []);
+
 
   if (loadedbooks)
     return (
@@ -84,10 +115,14 @@ function UserBooks({ tab }) {
                               Status
                             </InputLabel>
                             <Select
-                              readOnly
+                              // readOnly
                               labelId="demo-controlled-open-select-label"
                               id="demo-controlled-open-select"
-                              value={val.bookRate.status}
+                              defaultValue={val.bookRate.status}
+                              // value={oldStatus}
+                              onChange={(event) => {
+                                editRating({ status: event.target.value, rating: val.bookRate.rating, Bid: val.book._id }, val.bookRate);
+                              }}
                               label="Status"
                             >
                               <MenuItem value={0}>
@@ -102,8 +137,11 @@ function UserBooks({ tab }) {
                         <td>
                           <Rating
                             name="read-only"
-                            value={val.bookRate.rating}
-                            readOnly
+                            defaultValue={val.bookRate.rating}
+                            onChange={(_event, newValue) => {
+                              _event.currentTarget.value = newValue;
+                              editRating({ status: val.bookRate.status, rating: newValue, Bid: val.book._id }, val.bookRate);
+                            }}
                           />
                         </td>
                       </tr>
