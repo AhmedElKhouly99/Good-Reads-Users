@@ -67,7 +67,7 @@ export default function SearchTabs({ search }) {
             <Tab icon={<AccountBoxIcon />} label="AUTHORS" />
           </Tabs>
         </Box>
-        <div className="row justify-content-around">
+        <div className="row justify-content-around" style={{marginTop: '5%'}}>
           {(() => {
             switch (value) {
               case 0:

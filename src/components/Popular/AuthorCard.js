@@ -14,7 +14,7 @@ export default function AuthorCard({ author, isFirst }) {
         style={{ width: "100%", marginBottom: "2%" }}
       >
         <h2 style={{ textAlign: "center" }}>Popular Authors</h2>
-        <Card sx={{}} className="myPopularCard">
+        <Card sx={{paddingTop:'5%'}} className="myPopularCard">
           <CardActionArea>
             <CardMedia
               component="img"
@@ -40,10 +40,10 @@ export default function AuthorCard({ author, isFirst }) {
   return (
     <div
       className="carousel-item"
-      style={{ width: "100%", marginBottom: "2%" }}
+      style={{ width: "100%", marginBottom: "2%",paddingTop:'1%' }}
     >
       <h2 style={{ textAlign: "center" }}>Popular Authors</h2>
-      <Card sx={{}}>
+      <Card sx={{paddingTop:'5%'}}>
         <CardActionArea>
           <CardMedia
             component="img"

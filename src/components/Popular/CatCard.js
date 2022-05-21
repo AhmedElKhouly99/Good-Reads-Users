@@ -15,7 +15,7 @@ export default function CatCard({ cat, isFirst }) {
         style={{ width: "100%", marginBottom: "2%" }}
       >
         <h2 style={{ textAlign: "center" }}>Popular Categories</h2>
-        <Card sx={{}} className="myPopularCard">
+        <Card sx={{paddingTop:'5%'}} className="myPopularCard">
           <CardActionArea>
             <CardMedia
               component="img"
@@ -40,7 +40,7 @@ export default function CatCard({ cat, isFirst }) {
       style={{ width: "100%", marginBottom: "2%" }}
     >
       <h2 style={{ textAlign: "center" }}>Popular Categories</h2>
-      <Card sx={{}}>
+      <Card sx={{paddingTop:'5%'}}>
         <CardActionArea>
           <CardMedia
             component="img"

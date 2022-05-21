@@ -13,7 +13,7 @@ export default function Category({ cat, setRender }) {
   };
 
   return (
-    <Card sx={{ width: 300, marginTop: "5%" }} className="myCategoryCard">
+    <Card sx={{ width: 300, marginTop: "5%", paddingTop:'1%' }} className="myCategoryCard">
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

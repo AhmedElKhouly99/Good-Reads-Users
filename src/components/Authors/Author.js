@@ -13,7 +13,7 @@ export default function Author( { author, setOpenAuthor } ) {
   }
   
   return (
-    <Card key={author._id} sx={{ width: 345, marginBottom: "2%" }} onClick={authorHandler} className="myAuthorCard">
+    <Card key={author._id} sx={{ width: 345, marginBottom: "2%", paddingTop:'1%' }} onClick={authorHandler} className="myAuthorCard">
       <CardActionArea>
         <CardMedia
           component="img"
