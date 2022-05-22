@@ -10,10 +10,12 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import Book from "../Books/book";
 import Category from "../Categories/Category";
 import Author from "../Authors/Author";
-
+import FullScreenBook from '../Books/BookView';
+const Bookmodal = React.memo(FullScreenBook);
 export default function CategoryBooks({ categoryId }) {
   const [books, setBooks] = React.useState([]);
-
+  const [openBook, setOpenBook] = useState({ open: false, book: undefined });
+ 
   console.log(categoryId);
 
   useEffect(() => {
@@ -32,14 +34,15 @@ export default function CategoryBooks({ categoryId }) {
       });
   }, []);
 
-  if (books) {
+   if (books && (openBook != undefined)) {
     return (
       <>
         <div className="row justify-content-around">
           {books.map((book) => {
-            return <Book book={book} />;
+            return <Book book={book} setOpenBook={setOpenBook} />;
           })}
         </div>
+        <Bookmodal openBook={openBook} />
       </>
     );
   }

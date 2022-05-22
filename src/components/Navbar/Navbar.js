@@ -18,6 +18,7 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchTabs from "./Search";
 import "../Navbar/Navbar.css";
+import axios from "axios";
 // import usr from '../../../public/usr.png';
 
 const Search = styled("div")(({ theme }) => ({
@@ -70,8 +71,23 @@ const ResponsiveAppBar = ({ token, children }) => {
   const route = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const [user, setUser] = React.useState({});
   const [search, setSearch] = React.useState("");
+  React.useEffect(() => {
+    axios
+      .get(`https://good-reads-server.herokuapp.com/user`, {
+        headers: {
+          token: sessionStorage.getItem("token"),
+        },
+      })
+      .then(function (response) {
+        setUser(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -213,13 +229,15 @@ const ResponsiveAppBar = ({ token, children }) => {
                   />
                 </Search>
               </Box>
-
+              <Box sx={{ flexGrow: 0 }} style={{"margin-right":"10px", "margin-top":"5px","color":"white"}}><h5 >Hello, {user.firstName}</h5></Box>
+              
               <Box sx={{ flexGrow: 0 }}>
+                
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
                       alt="User"
-                      src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                      src={user.image?user.image:"https://cdn-icons-png.flaticon.com/512/149/149071.png"}
                     />
                   </IconButton>
                 </Tooltip>
@@ -260,6 +278,7 @@ const ResponsiveAppBar = ({ token, children }) => {
                   ))}
                 </Menu>
               </Box>
+            
             </Toolbar>
           </Container>
         </AppBar>

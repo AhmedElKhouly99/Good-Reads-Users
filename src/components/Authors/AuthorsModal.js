@@ -58,7 +58,7 @@ export default function AuthorModal({ author }) {
                 <ListItem alignItems="flex-start" style={{ marginTop: '1em', marginBottom: '2em', baddingLeft: 0, width: '40em' }}>
                     <ListItem >
                         <ListItemText primary="" />
-                        <img src={author.image ? author.image : "https://www.jimdo.com/static/788abd633ed9f2088117678a650fc7c4/c76cf/steplist-author.jpg"}
+                        <img src={author.image ? author.image :"https://lovelace-media.imgix.net/uploads/477/f7387590-a361-0133-6e11-0e87cd6e10c7.gif?w=740&h=429&fit=max&auto=format"}
                             alt="photo" style={{ width: '50%' }} />
                     </ListItem>
                     <ListItemText
@@ -97,7 +97,7 @@ export default function AuthorModal({ author }) {
                             <ListItem alignItems="flex-start">
                                 <ListItem >
                                     <ListItemText primary="" />
-                                    <img src={book.image ? author.image : "https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"}
+                                    <img src={book.image ? book.image : "https://i.pinimg.com/originals/b4/3d/43/b43d438638e2ed51d1f19dad2a4eb24d.gif"}
                                         alt="photo" style={{ width: '80%' }} />
                                 </ListItem>
                                 <ListItemText

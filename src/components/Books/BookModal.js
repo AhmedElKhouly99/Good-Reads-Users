@@ -47,6 +47,7 @@ export default function BookModal({ book, bookStatus }) {
     const [oldStatus, setOldStatus] = React.useState(bookStatus)
     const date = new Date(book.author[0].dateOfBirth)
     const rate = book.rating / book.noOfRatings ? book.rating / book.noOfRatings : 0;
+    const [reviews,setReviews] = React.useState([])
 
     let newbookStatus = {};
     React.useEffect(() => {
@@ -66,6 +67,20 @@ export default function BookModal({ book, bookStatus }) {
                 console.log(error);
             })
     }, [value]);
+    React.useEffect(() => {
+        axios.get(`http://localhost:5000/user/reviews/${book._id}`, {
+           
+        },
+        )
+            .then(function (response) {
+               setReviews(response.data)
+                
+               
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }, []);
 
 
     const handleChange = (event) => {
@@ -82,6 +97,7 @@ export default function BookModal({ book, bookStatus }) {
         setOpen(true);
     };
     return (
+        <>
         <List
             sx={{
                 width: '100%',
@@ -106,7 +122,7 @@ export default function BookModal({ book, bookStatus }) {
                 </li>
                 <ListItem>
                     <ListItemIcon sx={{ fontSize: 22 }}>🧑🏻</ListItemIcon>
-                    <ListItemText primary={book.author[0].firstName + " " + book.author[0].lastName} secondary={`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`} />
+                    <ListItemText primary={book.author && book.author[0].firstName + " " + book.author[0].lastName} secondary={`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`} />
                 </ListItem>
                 <Divider component="li" />
             </div>
@@ -194,5 +210,36 @@ export default function BookModal({ book, bookStatus }) {
                 </ListItem>
             </div>
         </List>
+        <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                <h4 style={{marginLeft: '1.7em'}}>The reviews:</h4>
+                {reviews.map((review) => {
+                   
+                
+                    return (
+                        <ListItem
+                            style={{ marginTop: '1em', marginBottom: '0', baddingLeft: 0, width: '15em' }}
+                            key={review._id}
+                        >
+                            <ListItem alignItems="flex-start">
+                                <ListItem >
+                                    <ListItemText primary="" />
+                                    <img src={review.image ? review.image :"https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                                        alt="photo" style={{ width: '100%' }} />
+                                </ListItem>
+                                <ListItemText
+                                    primary={review.firstName +" "+ review.lastName}
+                                    secondary={
+                                        <React.Fragment>
+                                            <Rating name="read-only" value= {review.books[0].rating } readOnly />
+                                           
+                                        </React.Fragment>
+                                    }
+                                />
+                            </ListItem>
+                        </ListItem>
+                    );
+                })}
+            </List>
+        </>
     );
 }
