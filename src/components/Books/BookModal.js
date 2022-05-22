@@ -68,7 +68,7 @@ export default function BookModal({ book, bookStatus }) {
             })
     }, [value]);
     React.useEffect(() => {
-        axios.get(`http://localhost:5000/user/reviews/${book._id}`, {
+        axios.get(`https://good-reads-server.herokuapp.com/user/reviews/${book._id}`, {
            
         },
         )
